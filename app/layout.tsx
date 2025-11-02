@@ -1,15 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Lilita_One,
+  Tiro_Devanagari_Marathi,
+  McLaren,
+  Cactus_Classical_Serif,
+} from "next/font/google";
 import "./globals.css";
+import Navigation from "@/components/navigation";
+import Image from "next/image";
+import heroImage from "@/public/hero.svg";
+import Footer from "@/components/footer";
+import AddCollabButton from "@/components/newcollabhover";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+export const Tiro_Devanagari_MarathiFont = Tiro_Devanagari_Marathi({
   subsets: ["latin"],
+  weight: "400",
+  variable: "--font-manjari",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+export const McLarenFont = McLaren({
   subsets: ["latin"],
+  weight: "400",
+  variable: "--font-mclaren",
 });
 
 export const metadata: Metadata = {
@@ -24,10 +36,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${McLarenFont.className}  antialiased text-[#121212] relative`}>
+        {/* Static Background Image */}
+        <Image
+          src={heroImage}
+          alt="Hero Image"
+          layout="fill"
+          objectFit="cover"
+          priority
+          className="-z-10 opacity-95 fixed inset-0"
+        />
+        
+        <Navigation />
+        <AddCollabButton/>
+
+        <main className="relative z-10 h-screen overflow-y-auto">
+          {children}
+          
+        <Footer />
+        </main>
+
       </body>
     </html>
   );
