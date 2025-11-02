@@ -21,7 +21,7 @@ const projects: Project[] = [
     description: "Discovering the serene beauty of winter landscapes.",
     image: snowyMountain,
     tags: ["Landscape", "Winter"],
-    link: "/collab/this-is-a-test-collab",
+    link: "/collabs/this-is-a-test-collab",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const projects: Project[] = [
     description: "The raw power and mesmerizing patterns of the sea.",
     image: swirlingOcean,
     tags: ["Ocean", "Aerial"],
-    link: "#"
+    link: "/collabs/this-is-a-test-collab"
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const projects: Project[] = [
       "Capturing the breathtaking beauty of sand dunes through artistic lensmanship.",
     image: sandDunes,
     tags: ["Photography", "Art Direction"],
-    link: "#"
+    link: "/collabs/this-is-a-test-collab"
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const projects: Project[] = [
     description: "Ancient rock formations standing tall against the tides.",
     image: rockyCoast,
     tags: ["Coastline", "Nature"],
-    link: "#"
+    link: "/collabs/this-is-a-test-collab"
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ const projects: Project[] = [
     description: "The silent grandeur of towering peaks.",
     image: snowyMountain,
     tags: ["Mountains", "Adventure"],
-    link: "#"
+    link: "/collabs/this-is-a-test-collab"
   },
   {
     id: 6,
@@ -62,7 +62,7 @@ const projects: Project[] = [
     description: "Ripples of sand stretching to the horizon.",
     image: sandDunes,
     tags: ["Desert", "Travel"],
-    link: "#"
+    link: "/collabs/this-is-a-test-collab"
   },
 ];
 
