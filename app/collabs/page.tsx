@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ThumbsUp, Eye, MessageCircle } from "lucide-react";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import Image from "next/image";
 import PinterestGrid from "@/components/gridsystem";
 import { GridItem } from "@/components/gridsystem";
 import { Tiro_Devanagari_Marathi } from "next/font/google";
+import hangover from "@/public/hangover.svg";
 
 export const Tiro_Devanagari_MarathiFont = Tiro_Devanagari_Marathi({
   subsets: ["latin"],
@@ -15,25 +16,14 @@ export const Tiro_Devanagari_MarathiFont = Tiro_Devanagari_Marathi({
   variable: "--font-manjari",
 });
 
-import image from "@/public/images/main.jpg";
+import { Collab, CollabTag } from "@prisma/client";
+import { fetchCollabs } from "../actions/collabsOps";
 
-const items = Array.from({ length: 15 }, (_, i) => ({
-  id: i,
-  title: `Item #${i + 1}`,
-  subtitle: "This is a sample subtitle for the item.",
-  description:
-    "This is a sample description for the item. It gives more context about what this gallery item represents and encourages user interaction.",
-  link: "https://example.com",
-  tags: ["Tag1", "Tag2", "Tag3"],
-  imageUrl: image,
-  upvotes: Math.floor(Math.random() * 500) + 10,
-  views: Math.floor(Math.random() * 3000) + 100,
-  comments: Math.floor(Math.random() * 100),
-  span: Math.floor(Math.random() * (40 - 20 + 1)) + 20,
-}));
+export type CollabWithTags = Collab & { tags: CollabTag[] };
 
 export default function GridPage() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [collabs, setCollabs] = useState<CollabWithTags[]>([]);
   const [query, setQuery] = useState("");
   const handleSearch = () => {
     if (!query.trim()) return;
@@ -46,6 +36,15 @@ export default function GridPage() {
     }
   };
 
+  useEffect(() => {
+    // Fetch collabs from the API
+    const fetchData = async () => {
+      const collabsData = await fetchCollabs();
+      if (collabsData.data) setCollabs(collabsData.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <main className="min-h-screen  py-32 sm:py-44 text-center">
       <div className="mx-auto max-w-7xl">
@@ -54,47 +53,52 @@ export default function GridPage() {
         >
           Our Gallery
         </h1>
-        <p className="max-w-sm mx-auto text-xs mb-8 mt-1 opacity-80">
+        <p className="max-w-sm mx-auto text-sm mb-8 mt-1 opacity-80">
           Explore a curated collection of collaborative projects and
           inspirations from our vibrant community.
         </p>
 
         {/* search bar */}
-        <div className="mb-16 px-4 flex flex-col items-center">
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Search collabs"
-            className="
-          w-full max-w-md rounded-full border border-gray-300
-          px-4 py-2 text-gray-800 text-sm
-          focus:border-yellow-500 focus:outline-none
-          shadow-sm transition
-        "
-          />
+        <div className="mb-36 relative w-fit mx-auto z-20 px-4 flex flex-col items-center">
+          <div className="relative w-full min-w-sm">
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Search collabs"
+              className="
+        w-full rounded-full border bg-gray-300 border-gray-400
+        px-4 py-3 text-gray-800 text-sm
+        focus:border-gray-600 focus:outline-none
+        shadow-sm transition z-20
+      "
+            />
 
-          <p className="mt-2 text-xs text-gray-500">
-            Press <kbd className="text-yellow-600">Enter</kbd> to search
-          </p>
+            {/* SVG positioned below the input */}
+            <Image
+              src={hangover}
+              alt="Hangover"
+              className="absolute left-1/2 -translate-x-1/2 top-1.5 -z-50  w-40 h-40"
+            />
+          </div>
         </div>
 
         <PinterestGrid>
-          {items.map((item) => (
-            <GridItem key={item.id} span={item.span}>
+          {collabs.map((item) => (
+            <GridItem key={item.id}>
               <div
                 onClick={() => setHoveredId(item.id)}
                 onMouseEnter={() => setHoveredId(item.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 className="relative h-full w-full overflow-hidden rounded"
               >
-                <Image
-                  src={item.imageUrl}
+                <img
+                  src={
+                    item.imageUrl ? item.imageUrl : "/default-collab-image.jpg"
+                  }
                   alt={item.title}
-                  fill
                   style={{ objectFit: "cover" }}
-                  placeholder="blur"
                   className="transition-transform duration-300 ease-in-out hover:scale-105 h-full "
                 />
 
@@ -130,12 +134,12 @@ export default function GridPage() {
                           {/* Tags */}
                           {item.tags?.length ? (
                             <div className="flex flex-wrap gap-2">
-                              {item.tags.map((tag: string) => (
+                              {item.tags.map((tag: CollabTag) => (
                                 <span
-                                  key={tag}
+                                  key={tag.id}
                                   className="rounded-full bg-white/20 px-3 py-1 text-[10px] sm:text-xs"
                                 >
-                                  {tag}
+                                  {tag.name}
                                 </span>
                               ))}
                             </div>
@@ -144,29 +148,22 @@ export default function GridPage() {
                           )}
 
                           <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
-                            {/* Metrics */}
-
-                            {/* Visit Button */}
-                            {item.link && (
-                              <Link
-                                href={item.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group flex h-9 sm:h-10 px-3 items-center justify-center rounded-full border border-white/50"
-                              >
-                                <ArrowUpRight size={18} />
-                                <span
-                                  className="
+                            <Link
+                              href={`/collabs/${item.id}`}
+                              className="group flex h-9 sm:h-10 px-3 items-center justify-center rounded-full border border-white/50"
+                            >
+                              <ArrowUpRight size={18} />
+                              <span
+                                className="
                         grid overflow-hidden whitespace-nowrap
                         transition-all duration-300 ease-in-out
                         max-w-0 group-hover:max-w-md
                         group-hover:ml-1 group-hover:pr-1
                       "
-                                >
-                                  Visit
-                                </span>
-                              </Link>
-                            )}
+                              >
+                                Visit
+                              </span>
+                            </Link>
                           </div>
                         </div>
 
@@ -179,13 +176,6 @@ export default function GridPage() {
                           <div className="flex items-center gap-1">
                             <Eye size={14} className="text-green-300" />
                             <span>{item.views}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <MessageCircle
-                              size={14}
-                              className="text-yellow-300"
-                            />
-                            <span>{item.comments}</span>
                           </div>
                         </div>
                       </div>

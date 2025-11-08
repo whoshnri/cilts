@@ -15,10 +15,10 @@ export default function Home() {
         {/* landing image */}
        
         <main className="text-center max-w-2xl">
-          <p className="border rounded-full w-fit px-3 py-1 flex items-center justify-center text-sm font-bold mb-8 mx-auto gap-2 bg-yellow-500 text-white border-black/30">
+          {/* <p className="border rounded-full w-fit px-3 py-1 flex items-center justify-center text-sm font-bold mb-8 mx-auto gap-2 bg-yellow-500 text-white border-black/30">
             <AutoAwesomeIcon fontSize="small" />
             First of its kind
-          </p>
+          </p> */}
           <h1
             className={`text-4xl sm:text-5xl md:text-6xl font-serif`}
           >
@@ -31,13 +31,13 @@ export default function Home() {
         <div className="flex items-center gap-2 justify-center mt-8  ">
           <Link
             href={"/collabs"}
-            className="text-xs sm:text-sm rounded-lg text-yellow-600 bg-white group cursor-pointer w-fit px-2 font-semibold py-3.5  hover:bg-white/80 hover:text-yellow-600"
+            className="text-xs sm:text-sm rounded-lg text-black bg-white group cursor-pointer w-fit px-2 font-semibold py-3.5  hover:bg-white/80 hover:text-black/80"
           >
-            Explore Pitches
+            Explore Collabs
           </Link>
           <Link
             href={"/collabs/new"}
-            className="text-xs sm:text-sm rounded-lg bg-yellow-600 text-white group cursor-pointer w-fit px-2 font-semibold py-3.5 hover:bg-yellow-700 hover:text-white"
+            className="text-xs sm:text-sm rounded-lg bg-black text-white group cursor-pointer w-fit px-2 font-semibold py-3.5 hover:bg-black/80 hover:text-white"
           >
             Create a Pitch
           </Link>

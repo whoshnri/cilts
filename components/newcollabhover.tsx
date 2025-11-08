@@ -14,9 +14,9 @@ export default function AddCollabButton() {
           fixed bottom-8 right-8
           z-100
           flex h-14 w-14 items-center justify-center
-          rounded-xl bg-yellow-600 text-white shadow-lg
+          rounded-xl bg-black text-white shadow-lg
           cursor-pointer transition-all duration-300 ease-in-out
-          hover:bg-yellow-700
+          hover:bg-black/90
         "
       >
         <Plus size={26} strokeWidth={2.5} />

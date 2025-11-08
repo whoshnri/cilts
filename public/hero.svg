@@ -1,17 +1,717 @@
-<svg width="760" height="500" viewBox="0 0 760 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0_4_14" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="760" height="500">
-<path d="M760 0H0V500H760V0Z" fill="white"/>
-</mask>
-<g mask="url(#mask0_4_14)">
-<path d="M798.243 520.05L-25.3232 526.82L-16.4362 188.16L-15.5242 153.6L43.4213 196.94L77.7936 174.66L90.4502 205.73L203.822 274.09L226.733 268.77L408.698 320.65L501.367 263.45L523.275 275.42L566.403 258.34C566.403 258.34 601.454 232.86 605.497 198.27C609.54 163.69 605.497 137.09 605.497 137.09H625.713C625.713 137.09 744.151 174.19 786.114 234.19C796.419 248.93 802.398 273.68 805.539 302.63C815.217 391.53 798.243 520.05 798.243 520.05Z" fill="#DDBB64"/>
-<path d="M93.9662 227.54L74.7535 226.54L93.9662 250C93.9662 250 16.0815 206.12 -16.4364 188.16L-15.5244 153.6L43.4212 196.94L77.7935 174.66L90.45 205.73L203.822 274.09L93.9662 227.54Z" fill="#E9D299"/>
-<path d="M137.434 274.09L144.511 287.395L260.767 315.329L137.434 274.09Z" fill="#E9D299"/>
-<path d="M226.733 268.77V278.417L315.357 309.343L295.138 315.329L356.805 324.307L277.953 355.234L408.698 320.65L226.733 268.77Z" fill="#E9D299"/>
-<path d="M501.367 263.452L492.269 289.391L470.028 304.355L481.617 325.305L361.859 364.212L519.564 331.955L510.465 321.315L604.482 288.393L547.87 281.41L566.402 258.34L523.275 275.42L501.367 263.452Z" fill="#E9D299"/>
-<path d="M523.537 277.894L513.322 288.284L539.944 281.731L556.225 265.854L523.537 277.894Z" fill="#F3E7C8"/>
-<path d="M805.539 302.63C801.952 352.98 797.311 382.24 791.809 338.2C778.24 229.62 691.418 181.65 691.418 181.65L614.587 238.51L638.856 164.69H617.12L628.743 153.6L605.497 137.09H625.713C625.713 137.09 744.151 174.19 786.114 234.19C796.419 248.93 802.398 273.68 805.539 302.63Z" fill="#E9D299"/>
-<path d="M690.41 203.595L705.518 222.433L634.81 248.422L690.41 203.595Z" fill="#E9D299"/>
-<path d="M181.909 311.276V321.315H230.439L181.909 311.276Z" fill="#E9D299"/>
-<path d="M-25.3232 209.581L93.6927 283.405L-31.3901 258.34L-25.3232 209.581Z" fill="#E9D299"/>
+<svg width="4800" height="2400" viewBox="0 0 4800 2400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_29_1825)">
+<rect width="4800" height="2400" fill="white"/>
+<g clip-path="url(#clip1_29_1825)">
+<rect width="1200" height="600" transform="translate(0.000244141)" fill="#D9D9D9"/>
+<rect x="0.000244141" width="1200" height="600" fill="#D9D9D9"/>
 </g>
+<line x1="199.5" y1="600.001" x2="199.5" y2="0.00012207" stroke="black"/>
+<line x1="399.5" y1="600.001" x2="399.5" y2="0.00012207" stroke="black"/>
+<line x1="599.5" y1="600.001" x2="599.5" y2="0.00012207" stroke="black"/>
+<line x1="799.5" y1="600.001" x2="799.5" y2="0.00012207" stroke="black"/>
+<line x1="999.5" y1="600.001" x2="999.5" y2="0.00012207" stroke="black"/>
+<line y1="399.5" x2="1200" y2="399.5" stroke="black"/>
+<line y1="199.5" x2="1200" y2="199.5" stroke="black"/>
+<circle cx="1000" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="1000" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="800" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="600" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="400" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="200" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="200" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="400" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="600" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="800" cy="400" r="25" fill="#D9D9D9"/>
+<line x1="999.5" y1="185" x2="999.5" y2="213" stroke="black"/>
+<line x1="1013" y1="199.5" x2="985" y2="199.5" stroke="black"/>
+<line x1="999.5" y1="386" x2="999.5" y2="414" stroke="black"/>
+<line x1="1013" y1="400.5" x2="985" y2="400.5" stroke="black"/>
+<line x1="800.5" y1="386" x2="800.5" y2="414" stroke="black"/>
+<line x1="814" y1="400.5" x2="786" y2="400.5" stroke="black"/>
+<line x1="601.5" y1="386" x2="601.5" y2="414" stroke="black"/>
+<line x1="615" y1="400.5" x2="587" y2="400.5" stroke="black"/>
+<line x1="402.5" y1="386" x2="402.5" y2="414" stroke="black"/>
+<line x1="416" y1="400.5" x2="388" y2="400.5" stroke="black"/>
+<line x1="203.5" y1="386" x2="203.5" y2="414" stroke="black"/>
+<line x1="217" y1="400.5" x2="189" y2="400.5" stroke="black"/>
+<line x1="200.5" y1="186" x2="200.5" y2="214" stroke="black"/>
+<line x1="214" y1="200.5" x2="186" y2="200.5" stroke="black"/>
+<line x1="400.5" y1="186" x2="400.5" y2="214" stroke="black"/>
+<line x1="414" y1="200.5" x2="386" y2="200.5" stroke="black"/>
+<line x1="600.5" y1="186" x2="600.5" y2="214" stroke="black"/>
+<line x1="614" y1="200.5" x2="586" y2="200.5" stroke="black"/>
+<line x1="800.5" y1="186" x2="800.5" y2="214" stroke="black"/>
+<line x1="814" y1="200.5" x2="786" y2="200.5" stroke="black"/>
+<g clip-path="url(#clip2_29_1825)">
+<rect width="1200" height="600" transform="translate(0.000244141 600)" fill="#D9D9D9"/>
+<rect x="0.000244141" y="600" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="199.5" y1="1200" x2="199.5" y2="600" stroke="black"/>
+<line x1="399.5" y1="1200" x2="399.5" y2="600" stroke="black"/>
+<line x1="599.5" y1="1200" x2="599.5" y2="600" stroke="black"/>
+<line x1="799.5" y1="1200" x2="799.5" y2="600" stroke="black"/>
+<line x1="999.5" y1="1200" x2="999.5" y2="600" stroke="black"/>
+<line y1="999.5" x2="1200" y2="999.5" stroke="black"/>
+<line y1="799.5" x2="1200" y2="799.5" stroke="black"/>
+<circle cx="1000" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="1000" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="800" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="600" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="400" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="200" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="200" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="400" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="600" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="800" cy="1000" r="25" fill="#D9D9D9"/>
+<line x1="999.5" y1="785" x2="999.5" y2="813" stroke="black"/>
+<line x1="1013" y1="799.5" x2="985" y2="799.5" stroke="black"/>
+<line x1="999.5" y1="986" x2="999.5" y2="1014" stroke="black"/>
+<line x1="1013" y1="1000.5" x2="985" y2="1000.5" stroke="black"/>
+<line x1="800.5" y1="986" x2="800.5" y2="1014" stroke="black"/>
+<line x1="814" y1="1000.5" x2="786" y2="1000.5" stroke="black"/>
+<line x1="601.5" y1="986" x2="601.5" y2="1014" stroke="black"/>
+<line x1="615" y1="1000.5" x2="587" y2="1000.5" stroke="black"/>
+<line x1="402.5" y1="986" x2="402.5" y2="1014" stroke="black"/>
+<line x1="416" y1="1000.5" x2="388" y2="1000.5" stroke="black"/>
+<line x1="203.5" y1="986" x2="203.5" y2="1014" stroke="black"/>
+<line x1="217" y1="1000.5" x2="189" y2="1000.5" stroke="black"/>
+<line x1="200.5" y1="786" x2="200.5" y2="814" stroke="black"/>
+<line x1="214" y1="800.5" x2="186" y2="800.5" stroke="black"/>
+<line x1="400.5" y1="786" x2="400.5" y2="814" stroke="black"/>
+<line x1="414" y1="800.5" x2="386" y2="800.5" stroke="black"/>
+<line x1="600.5" y1="786" x2="600.5" y2="814" stroke="black"/>
+<line x1="614" y1="800.5" x2="586" y2="800.5" stroke="black"/>
+<line x1="800.5" y1="786" x2="800.5" y2="814" stroke="black"/>
+<line x1="814" y1="800.5" x2="786" y2="800.5" stroke="black"/>
+<g clip-path="url(#clip3_29_1825)">
+<rect width="1200" height="600" transform="translate(0.000244141 1200)" fill="#D9D9D9"/>
+<rect x="0.000244141" y="1200" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="199.5" y1="1800" x2="199.5" y2="1200" stroke="black"/>
+<line x1="399.5" y1="1800" x2="399.5" y2="1200" stroke="black"/>
+<line x1="599.5" y1="1800" x2="599.5" y2="1200" stroke="black"/>
+<line x1="799.5" y1="1800" x2="799.5" y2="1200" stroke="black"/>
+<line x1="999.5" y1="1800" x2="999.5" y2="1200" stroke="black"/>
+<line y1="1599.5" x2="1200" y2="1599.5" stroke="black"/>
+<line y1="1399.5" x2="1200" y2="1399.5" stroke="black"/>
+<circle cx="1000" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="1000" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="800" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="600" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="400" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="200" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="200" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="400" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="600" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="800" cy="1600" r="25" fill="#D9D9D9"/>
+<line x1="999.5" y1="1385" x2="999.5" y2="1413" stroke="black"/>
+<line x1="1013" y1="1399.5" x2="985" y2="1399.5" stroke="black"/>
+<line x1="999.5" y1="1586" x2="999.5" y2="1614" stroke="black"/>
+<line x1="1013" y1="1600.5" x2="985" y2="1600.5" stroke="black"/>
+<line x1="800.5" y1="1586" x2="800.5" y2="1614" stroke="black"/>
+<line x1="814" y1="1600.5" x2="786" y2="1600.5" stroke="black"/>
+<line x1="601.5" y1="1586" x2="601.5" y2="1614" stroke="black"/>
+<line x1="615" y1="1600.5" x2="587" y2="1600.5" stroke="black"/>
+<line x1="402.5" y1="1586" x2="402.5" y2="1614" stroke="black"/>
+<line x1="416" y1="1600.5" x2="388" y2="1600.5" stroke="black"/>
+<line x1="203.5" y1="1586" x2="203.5" y2="1614" stroke="black"/>
+<line x1="217" y1="1600.5" x2="189" y2="1600.5" stroke="black"/>
+<line x1="200.5" y1="1386" x2="200.5" y2="1414" stroke="black"/>
+<line x1="214" y1="1400.5" x2="186" y2="1400.5" stroke="black"/>
+<line x1="400.5" y1="1386" x2="400.5" y2="1414" stroke="black"/>
+<line x1="414" y1="1400.5" x2="386" y2="1400.5" stroke="black"/>
+<line x1="600.5" y1="1386" x2="600.5" y2="1414" stroke="black"/>
+<line x1="614" y1="1400.5" x2="586" y2="1400.5" stroke="black"/>
+<line x1="800.5" y1="1386" x2="800.5" y2="1414" stroke="black"/>
+<line x1="814" y1="1400.5" x2="786" y2="1400.5" stroke="black"/>
+<g clip-path="url(#clip4_29_1825)">
+<rect width="1200" height="600" transform="translate(0.000244141 1800)" fill="#D9D9D9"/>
+<rect x="0.000244141" y="1800" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="199.5" y1="2400" x2="199.5" y2="1800" stroke="black"/>
+<line x1="399.5" y1="2400" x2="399.5" y2="1800" stroke="black"/>
+<line x1="599.5" y1="2400" x2="599.5" y2="1800" stroke="black"/>
+<line x1="799.5" y1="2400" x2="799.5" y2="1800" stroke="black"/>
+<line x1="999.5" y1="2400" x2="999.5" y2="1800" stroke="black"/>
+<line y1="2199.5" x2="1200" y2="2199.5" stroke="black"/>
+<line y1="1999.5" x2="1200" y2="1999.5" stroke="black"/>
+<circle cx="1000" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="1000" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="800" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="600" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="400" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="200" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="200" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="400" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="600" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="800" cy="2200" r="25" fill="#D9D9D9"/>
+<line x1="999.5" y1="1985" x2="999.5" y2="2013" stroke="black"/>
+<line x1="1013" y1="1999.5" x2="985" y2="1999.5" stroke="black"/>
+<line x1="999.5" y1="2186" x2="999.5" y2="2214" stroke="black"/>
+<line x1="1013" y1="2200.5" x2="985" y2="2200.5" stroke="black"/>
+<line x1="800.5" y1="2186" x2="800.5" y2="2214" stroke="black"/>
+<line x1="814" y1="2200.5" x2="786" y2="2200.5" stroke="black"/>
+<line x1="601.5" y1="2186" x2="601.5" y2="2214" stroke="black"/>
+<line x1="615" y1="2200.5" x2="587" y2="2200.5" stroke="black"/>
+<line x1="402.5" y1="2186" x2="402.5" y2="2214" stroke="black"/>
+<line x1="416" y1="2200.5" x2="388" y2="2200.5" stroke="black"/>
+<line x1="203.5" y1="2186" x2="203.5" y2="2214" stroke="black"/>
+<line x1="217" y1="2200.5" x2="189" y2="2200.5" stroke="black"/>
+<line x1="200.5" y1="1986" x2="200.5" y2="2014" stroke="black"/>
+<line x1="214" y1="2000.5" x2="186" y2="2000.5" stroke="black"/>
+<line x1="400.5" y1="1986" x2="400.5" y2="2014" stroke="black"/>
+<line x1="414" y1="2000.5" x2="386" y2="2000.5" stroke="black"/>
+<line x1="600.5" y1="1986" x2="600.5" y2="2014" stroke="black"/>
+<line x1="614" y1="2000.5" x2="586" y2="2000.5" stroke="black"/>
+<line x1="800.5" y1="1986" x2="800.5" y2="2014" stroke="black"/>
+<line x1="814" y1="2000.5" x2="786" y2="2000.5" stroke="black"/>
+<g clip-path="url(#clip5_29_1825)">
+<rect width="1200" height="600" transform="translate(1200 1800)" fill="#D9D9D9"/>
+<rect x="1200" y="1800" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="1399.5" y1="2400" x2="1399.5" y2="1800" stroke="black"/>
+<line x1="1599.5" y1="2400" x2="1599.5" y2="1800" stroke="black"/>
+<line x1="1799.5" y1="2400" x2="1799.5" y2="1800" stroke="black"/>
+<line x1="1999.5" y1="2400" x2="1999.5" y2="1800" stroke="black"/>
+<line x1="2199.5" y1="2400" x2="2199.5" y2="1800" stroke="black"/>
+<line x1="1200" y1="2199.5" x2="2400" y2="2199.5" stroke="black"/>
+<line x1="1200" y1="1999.5" x2="2400" y2="1999.5" stroke="black"/>
+<circle cx="2200" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="2200" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="2000" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="1800" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="1600" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="1400" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="1400" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="1600" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="1800" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="2000" cy="2200" r="25" fill="#D9D9D9"/>
+<line x1="2199.5" y1="1985" x2="2199.5" y2="2013" stroke="black"/>
+<line x1="2213" y1="1999.5" x2="2185" y2="1999.5" stroke="black"/>
+<line x1="2199.5" y1="2186" x2="2199.5" y2="2214" stroke="black"/>
+<line x1="2213" y1="2200.5" x2="2185" y2="2200.5" stroke="black"/>
+<line x1="2000.5" y1="2186" x2="2000.5" y2="2214" stroke="black"/>
+<line x1="2014" y1="2200.5" x2="1986" y2="2200.5" stroke="black"/>
+<line x1="1801.5" y1="2186" x2="1801.5" y2="2214" stroke="black"/>
+<line x1="1815" y1="2200.5" x2="1787" y2="2200.5" stroke="black"/>
+<line x1="1602.5" y1="2186" x2="1602.5" y2="2214" stroke="black"/>
+<line x1="1616" y1="2200.5" x2="1588" y2="2200.5" stroke="black"/>
+<line x1="1403.5" y1="2186" x2="1403.5" y2="2214" stroke="black"/>
+<line x1="1417" y1="2200.5" x2="1389" y2="2200.5" stroke="black"/>
+<line x1="1400.5" y1="1986" x2="1400.5" y2="2014" stroke="black"/>
+<line x1="1414" y1="2000.5" x2="1386" y2="2000.5" stroke="black"/>
+<line x1="1600.5" y1="1986" x2="1600.5" y2="2014" stroke="black"/>
+<line x1="1614" y1="2000.5" x2="1586" y2="2000.5" stroke="black"/>
+<line x1="1800.5" y1="1986" x2="1800.5" y2="2014" stroke="black"/>
+<line x1="1814" y1="2000.5" x2="1786" y2="2000.5" stroke="black"/>
+<line x1="2000.5" y1="1986" x2="2000.5" y2="2014" stroke="black"/>
+<line x1="2014" y1="2000.5" x2="1986" y2="2000.5" stroke="black"/>
+<g clip-path="url(#clip6_29_1825)">
+<rect width="1200" height="600" transform="translate(2400 1800)" fill="#D9D9D9"/>
+<rect x="2400" y="1800" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="2599.5" y1="2400" x2="2599.5" y2="1800" stroke="black"/>
+<line x1="2799.5" y1="2400" x2="2799.5" y2="1800" stroke="black"/>
+<line x1="2999.5" y1="2400" x2="2999.5" y2="1800" stroke="black"/>
+<line x1="3199.5" y1="2400" x2="3199.5" y2="1800" stroke="black"/>
+<line x1="3399.5" y1="2400" x2="3399.5" y2="1800" stroke="black"/>
+<line x1="2400" y1="2199.5" x2="3600" y2="2199.5" stroke="black"/>
+<line x1="2400" y1="1999.5" x2="3600" y2="1999.5" stroke="black"/>
+<circle cx="3400" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="3400" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="3200" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="3000" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="2800" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="2600" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="2600" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="2800" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="3000" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="3200" cy="2200" r="25" fill="#D9D9D9"/>
+<line x1="3399.5" y1="1985" x2="3399.5" y2="2013" stroke="black"/>
+<line x1="3413" y1="1999.5" x2="3385" y2="1999.5" stroke="black"/>
+<line x1="3399.5" y1="2186" x2="3399.5" y2="2214" stroke="black"/>
+<line x1="3413" y1="2200.5" x2="3385" y2="2200.5" stroke="black"/>
+<line x1="3200.5" y1="2186" x2="3200.5" y2="2214" stroke="black"/>
+<line x1="3214" y1="2200.5" x2="3186" y2="2200.5" stroke="black"/>
+<line x1="3001.5" y1="2186" x2="3001.5" y2="2214" stroke="black"/>
+<line x1="3015" y1="2200.5" x2="2987" y2="2200.5" stroke="black"/>
+<line x1="2802.5" y1="2186" x2="2802.5" y2="2214" stroke="black"/>
+<line x1="2816" y1="2200.5" x2="2788" y2="2200.5" stroke="black"/>
+<line x1="2603.5" y1="2186" x2="2603.5" y2="2214" stroke="black"/>
+<line x1="2617" y1="2200.5" x2="2589" y2="2200.5" stroke="black"/>
+<line x1="2600.5" y1="1986" x2="2600.5" y2="2014" stroke="black"/>
+<line x1="2614" y1="2000.5" x2="2586" y2="2000.5" stroke="black"/>
+<line x1="2800.5" y1="1986" x2="2800.5" y2="2014" stroke="black"/>
+<line x1="2814" y1="2000.5" x2="2786" y2="2000.5" stroke="black"/>
+<line x1="3000.5" y1="1986" x2="3000.5" y2="2014" stroke="black"/>
+<line x1="3014" y1="2000.5" x2="2986" y2="2000.5" stroke="black"/>
+<line x1="3200.5" y1="1986" x2="3200.5" y2="2014" stroke="black"/>
+<line x1="3214" y1="2000.5" x2="3186" y2="2000.5" stroke="black"/>
+<g clip-path="url(#clip7_29_1825)">
+<rect width="1200" height="600" transform="translate(3600 1800)" fill="#D9D9D9"/>
+<rect x="3600" y="1800" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="3799.5" y1="2400" x2="3799.5" y2="1800" stroke="black"/>
+<line x1="3999.5" y1="2400" x2="3999.5" y2="1800" stroke="black"/>
+<line x1="4199.5" y1="2400" x2="4199.5" y2="1800" stroke="black"/>
+<line x1="4399.5" y1="2400" x2="4399.5" y2="1800" stroke="black"/>
+<line x1="4599.5" y1="2400" x2="4599.5" y2="1800" stroke="black"/>
+<line x1="3600" y1="2199.5" x2="4800" y2="2199.5" stroke="black"/>
+<line x1="3600" y1="1999.5" x2="4800" y2="1999.5" stroke="black"/>
+<circle cx="4600" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="4600" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="4400" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="4200" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="4000" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="3800" cy="2000" r="25" fill="#D9D9D9"/>
+<circle cx="3800" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="4000" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="4200" cy="2200" r="25" fill="#D9D9D9"/>
+<circle cx="4400" cy="2200" r="25" fill="#D9D9D9"/>
+<line x1="4599.5" y1="1985" x2="4599.5" y2="2013" stroke="black"/>
+<line x1="4613" y1="1999.5" x2="4585" y2="1999.5" stroke="black"/>
+<line x1="4599.5" y1="2186" x2="4599.5" y2="2214" stroke="black"/>
+<line x1="4613" y1="2200.5" x2="4585" y2="2200.5" stroke="black"/>
+<line x1="4400.5" y1="2186" x2="4400.5" y2="2214" stroke="black"/>
+<line x1="4414" y1="2200.5" x2="4386" y2="2200.5" stroke="black"/>
+<line x1="4201.5" y1="2186" x2="4201.5" y2="2214" stroke="black"/>
+<line x1="4215" y1="2200.5" x2="4187" y2="2200.5" stroke="black"/>
+<line x1="4002.5" y1="2186" x2="4002.5" y2="2214" stroke="black"/>
+<line x1="4016" y1="2200.5" x2="3988" y2="2200.5" stroke="black"/>
+<line x1="3803.5" y1="2186" x2="3803.5" y2="2214" stroke="black"/>
+<line x1="3817" y1="2200.5" x2="3789" y2="2200.5" stroke="black"/>
+<line x1="3800.5" y1="1986" x2="3800.5" y2="2014" stroke="black"/>
+<line x1="3814" y1="2000.5" x2="3786" y2="2000.5" stroke="black"/>
+<line x1="4000.5" y1="1986" x2="4000.5" y2="2014" stroke="black"/>
+<line x1="4014" y1="2000.5" x2="3986" y2="2000.5" stroke="black"/>
+<line x1="4200.5" y1="1986" x2="4200.5" y2="2014" stroke="black"/>
+<line x1="4214" y1="2000.5" x2="4186" y2="2000.5" stroke="black"/>
+<line x1="4400.5" y1="1986" x2="4400.5" y2="2014" stroke="black"/>
+<line x1="4414" y1="2000.5" x2="4386" y2="2000.5" stroke="black"/>
+<g clip-path="url(#clip8_29_1825)">
+<rect width="1200" height="600" transform="translate(3600 1200)" fill="#D9D9D9"/>
+<rect x="3600" y="1200" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="3799.5" y1="1800" x2="3799.5" y2="1200" stroke="black"/>
+<line x1="3999.5" y1="1800" x2="3999.5" y2="1200" stroke="black"/>
+<line x1="4199.5" y1="1800" x2="4199.5" y2="1200" stroke="black"/>
+<line x1="4399.5" y1="1800" x2="4399.5" y2="1200" stroke="black"/>
+<line x1="4599.5" y1="1800" x2="4599.5" y2="1200" stroke="black"/>
+<line x1="3600" y1="1599.5" x2="4800" y2="1599.5" stroke="black"/>
+<line x1="3600" y1="1399.5" x2="4800" y2="1399.5" stroke="black"/>
+<circle cx="4600" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="4600" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="4400" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="4200" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="4000" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="3800" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="3800" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="4000" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="4200" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="4400" cy="1600" r="25" fill="#D9D9D9"/>
+<line x1="4599.5" y1="1385" x2="4599.5" y2="1413" stroke="black"/>
+<line x1="4613" y1="1399.5" x2="4585" y2="1399.5" stroke="black"/>
+<line x1="4599.5" y1="1586" x2="4599.5" y2="1614" stroke="black"/>
+<line x1="4613" y1="1600.5" x2="4585" y2="1600.5" stroke="black"/>
+<line x1="4400.5" y1="1586" x2="4400.5" y2="1614" stroke="black"/>
+<line x1="4414" y1="1600.5" x2="4386" y2="1600.5" stroke="black"/>
+<line x1="4201.5" y1="1586" x2="4201.5" y2="1614" stroke="black"/>
+<line x1="4215" y1="1600.5" x2="4187" y2="1600.5" stroke="black"/>
+<line x1="4002.5" y1="1586" x2="4002.5" y2="1614" stroke="black"/>
+<line x1="4016" y1="1600.5" x2="3988" y2="1600.5" stroke="black"/>
+<line x1="3803.5" y1="1586" x2="3803.5" y2="1614" stroke="black"/>
+<line x1="3817" y1="1600.5" x2="3789" y2="1600.5" stroke="black"/>
+<line x1="3800.5" y1="1386" x2="3800.5" y2="1414" stroke="black"/>
+<line x1="3814" y1="1400.5" x2="3786" y2="1400.5" stroke="black"/>
+<line x1="4000.5" y1="1386" x2="4000.5" y2="1414" stroke="black"/>
+<line x1="4014" y1="1400.5" x2="3986" y2="1400.5" stroke="black"/>
+<line x1="4200.5" y1="1386" x2="4200.5" y2="1414" stroke="black"/>
+<line x1="4214" y1="1400.5" x2="4186" y2="1400.5" stroke="black"/>
+<line x1="4400.5" y1="1386" x2="4400.5" y2="1414" stroke="black"/>
+<line x1="4414" y1="1400.5" x2="4386" y2="1400.5" stroke="black"/>
+<g clip-path="url(#clip9_29_1825)">
+<rect width="1200" height="600" transform="translate(3600 600)" fill="#D9D9D9"/>
+<rect x="3600" y="600" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="3799.5" y1="1200" x2="3799.5" y2="600" stroke="black"/>
+<line x1="3999.5" y1="1200" x2="3999.5" y2="600" stroke="black"/>
+<line x1="4199.5" y1="1200" x2="4199.5" y2="600" stroke="black"/>
+<line x1="4399.5" y1="1200" x2="4399.5" y2="600" stroke="black"/>
+<line x1="4599.5" y1="1200" x2="4599.5" y2="600" stroke="black"/>
+<line x1="3600" y1="999.5" x2="4800" y2="999.5" stroke="black"/>
+<line x1="3600" y1="799.5" x2="4800" y2="799.5" stroke="black"/>
+<circle cx="4600" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="4600" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="4400" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="4200" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="4000" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="3800" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="3800" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="4000" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="4200" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="4400" cy="1000" r="25" fill="#D9D9D9"/>
+<line x1="4599.5" y1="785" x2="4599.5" y2="813" stroke="black"/>
+<line x1="4613" y1="799.5" x2="4585" y2="799.5" stroke="black"/>
+<line x1="4599.5" y1="986" x2="4599.5" y2="1014" stroke="black"/>
+<line x1="4613" y1="1000.5" x2="4585" y2="1000.5" stroke="black"/>
+<line x1="4400.5" y1="986" x2="4400.5" y2="1014" stroke="black"/>
+<line x1="4414" y1="1000.5" x2="4386" y2="1000.5" stroke="black"/>
+<line x1="4201.5" y1="986" x2="4201.5" y2="1014" stroke="black"/>
+<line x1="4215" y1="1000.5" x2="4187" y2="1000.5" stroke="black"/>
+<line x1="4002.5" y1="986" x2="4002.5" y2="1014" stroke="black"/>
+<line x1="4016" y1="1000.5" x2="3988" y2="1000.5" stroke="black"/>
+<line x1="3803.5" y1="986" x2="3803.5" y2="1014" stroke="black"/>
+<line x1="3817" y1="1000.5" x2="3789" y2="1000.5" stroke="black"/>
+<line x1="3800.5" y1="786" x2="3800.5" y2="814" stroke="black"/>
+<line x1="3814" y1="800.5" x2="3786" y2="800.5" stroke="black"/>
+<line x1="4000.5" y1="786" x2="4000.5" y2="814" stroke="black"/>
+<line x1="4014" y1="800.5" x2="3986" y2="800.5" stroke="black"/>
+<line x1="4200.5" y1="786" x2="4200.5" y2="814" stroke="black"/>
+<line x1="4214" y1="800.5" x2="4186" y2="800.5" stroke="black"/>
+<line x1="4400.5" y1="786" x2="4400.5" y2="814" stroke="black"/>
+<line x1="4414" y1="800.5" x2="4386" y2="800.5" stroke="black"/>
+<g clip-path="url(#clip10_29_1825)">
+<rect width="1200" height="600" transform="translate(3600)" fill="#D9D9D9"/>
+<rect x="3600" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="3799.5" y1="600.001" x2="3799.5" y2="0.00012207" stroke="black"/>
+<line x1="3999.5" y1="600.001" x2="3999.5" y2="0.00012207" stroke="black"/>
+<line x1="4199.5" y1="600.001" x2="4199.5" y2="0.00012207" stroke="black"/>
+<line x1="4399.5" y1="600.001" x2="4399.5" y2="0.00012207" stroke="black"/>
+<line x1="4599.5" y1="600.001" x2="4599.5" y2="0.00012207" stroke="black"/>
+<line x1="3600" y1="399.5" x2="4800" y2="399.5" stroke="black"/>
+<line x1="3600" y1="199.5" x2="4800" y2="199.5" stroke="black"/>
+<circle cx="4600" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="4600" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="4400" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="4200" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="4000" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="3800" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="3800" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="4000" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="4200" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="4400" cy="400" r="25" fill="#D9D9D9"/>
+<line x1="4599.5" y1="185" x2="4599.5" y2="213" stroke="black"/>
+<line x1="4613" y1="199.5" x2="4585" y2="199.5" stroke="black"/>
+<line x1="4599.5" y1="386" x2="4599.5" y2="414" stroke="black"/>
+<line x1="4613" y1="400.5" x2="4585" y2="400.5" stroke="black"/>
+<line x1="4400.5" y1="386" x2="4400.5" y2="414" stroke="black"/>
+<line x1="4414" y1="400.5" x2="4386" y2="400.5" stroke="black"/>
+<line x1="4201.5" y1="386" x2="4201.5" y2="414" stroke="black"/>
+<line x1="4215" y1="400.5" x2="4187" y2="400.5" stroke="black"/>
+<line x1="4002.5" y1="386" x2="4002.5" y2="414" stroke="black"/>
+<line x1="4016" y1="400.5" x2="3988" y2="400.5" stroke="black"/>
+<line x1="3803.5" y1="386" x2="3803.5" y2="414" stroke="black"/>
+<line x1="3817" y1="400.5" x2="3789" y2="400.5" stroke="black"/>
+<line x1="3800.5" y1="186" x2="3800.5" y2="214" stroke="black"/>
+<line x1="3814" y1="200.5" x2="3786" y2="200.5" stroke="black"/>
+<line x1="4000.5" y1="186" x2="4000.5" y2="214" stroke="black"/>
+<line x1="4014" y1="200.5" x2="3986" y2="200.5" stroke="black"/>
+<line x1="4200.5" y1="186" x2="4200.5" y2="214" stroke="black"/>
+<line x1="4214" y1="200.5" x2="4186" y2="200.5" stroke="black"/>
+<line x1="4400.5" y1="186" x2="4400.5" y2="214" stroke="black"/>
+<line x1="4414" y1="200.5" x2="4386" y2="200.5" stroke="black"/>
+<g clip-path="url(#clip11_29_1825)">
+<rect width="1200" height="600" transform="translate(2400)" fill="#D9D9D9"/>
+<rect x="2400" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="2599.5" y1="600.001" x2="2599.5" y2="0.00012207" stroke="black"/>
+<line x1="2799.5" y1="600.001" x2="2799.5" y2="0.00012207" stroke="black"/>
+<line x1="2999.5" y1="600.001" x2="2999.5" y2="0.00012207" stroke="black"/>
+<line x1="3199.5" y1="600.001" x2="3199.5" y2="0.00012207" stroke="black"/>
+<line x1="3399.5" y1="600.001" x2="3399.5" y2="0.00012207" stroke="black"/>
+<line x1="2400" y1="399.5" x2="3600" y2="399.5" stroke="black"/>
+<line x1="2400" y1="199.5" x2="3600" y2="199.5" stroke="black"/>
+<circle cx="3400" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="3400" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="3200" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="3000" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="2800" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="2600" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="2600" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="2800" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="3000" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="3200" cy="400" r="25" fill="#D9D9D9"/>
+<line x1="3399.5" y1="185" x2="3399.5" y2="213" stroke="black"/>
+<line x1="3413" y1="199.5" x2="3385" y2="199.5" stroke="black"/>
+<line x1="3399.5" y1="386" x2="3399.5" y2="414" stroke="black"/>
+<line x1="3413" y1="400.5" x2="3385" y2="400.5" stroke="black"/>
+<line x1="3200.5" y1="386" x2="3200.5" y2="414" stroke="black"/>
+<line x1="3214" y1="400.5" x2="3186" y2="400.5" stroke="black"/>
+<line x1="3001.5" y1="386" x2="3001.5" y2="414" stroke="black"/>
+<line x1="3015" y1="400.5" x2="2987" y2="400.5" stroke="black"/>
+<line x1="2802.5" y1="386" x2="2802.5" y2="414" stroke="black"/>
+<line x1="2816" y1="400.5" x2="2788" y2="400.5" stroke="black"/>
+<line x1="2603.5" y1="386" x2="2603.5" y2="414" stroke="black"/>
+<line x1="2617" y1="400.5" x2="2589" y2="400.5" stroke="black"/>
+<line x1="2600.5" y1="186" x2="2600.5" y2="214" stroke="black"/>
+<line x1="2614" y1="200.5" x2="2586" y2="200.5" stroke="black"/>
+<line x1="2800.5" y1="186" x2="2800.5" y2="214" stroke="black"/>
+<line x1="2814" y1="200.5" x2="2786" y2="200.5" stroke="black"/>
+<line x1="3000.5" y1="186" x2="3000.5" y2="214" stroke="black"/>
+<line x1="3014" y1="200.5" x2="2986" y2="200.5" stroke="black"/>
+<line x1="3200.5" y1="186" x2="3200.5" y2="214" stroke="black"/>
+<line x1="3214" y1="200.5" x2="3186" y2="200.5" stroke="black"/>
+<g clip-path="url(#clip12_29_1825)">
+<rect width="1200" height="600" transform="translate(2400 600)" fill="#D9D9D9"/>
+<rect x="2400" y="600" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="2599.5" y1="1200" x2="2599.5" y2="600" stroke="black"/>
+<line x1="2799.5" y1="1200" x2="2799.5" y2="600" stroke="black"/>
+<line x1="2999.5" y1="1200" x2="2999.5" y2="600" stroke="black"/>
+<line x1="3199.5" y1="1200" x2="3199.5" y2="600" stroke="black"/>
+<line x1="3399.5" y1="1200" x2="3399.5" y2="600" stroke="black"/>
+<line x1="2400" y1="999.5" x2="3600" y2="999.5" stroke="black"/>
+<line x1="2400" y1="799.5" x2="3600" y2="799.5" stroke="black"/>
+<circle cx="3400" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="3400" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="3200" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="3000" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="2800" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="2600" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="2600" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="2800" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="3000" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="3200" cy="1000" r="25" fill="#D9D9D9"/>
+<line x1="3399.5" y1="785" x2="3399.5" y2="813" stroke="black"/>
+<line x1="3413" y1="799.5" x2="3385" y2="799.5" stroke="black"/>
+<line x1="3399.5" y1="986" x2="3399.5" y2="1014" stroke="black"/>
+<line x1="3413" y1="1000.5" x2="3385" y2="1000.5" stroke="black"/>
+<line x1="3200.5" y1="986" x2="3200.5" y2="1014" stroke="black"/>
+<line x1="3214" y1="1000.5" x2="3186" y2="1000.5" stroke="black"/>
+<line x1="3001.5" y1="986" x2="3001.5" y2="1014" stroke="black"/>
+<line x1="3015" y1="1000.5" x2="2987" y2="1000.5" stroke="black"/>
+<line x1="2802.5" y1="986" x2="2802.5" y2="1014" stroke="black"/>
+<line x1="2816" y1="1000.5" x2="2788" y2="1000.5" stroke="black"/>
+<line x1="2603.5" y1="986" x2="2603.5" y2="1014" stroke="black"/>
+<line x1="2617" y1="1000.5" x2="2589" y2="1000.5" stroke="black"/>
+<line x1="2600.5" y1="786" x2="2600.5" y2="814" stroke="black"/>
+<line x1="2614" y1="800.5" x2="2586" y2="800.5" stroke="black"/>
+<line x1="2800.5" y1="786" x2="2800.5" y2="814" stroke="black"/>
+<line x1="2814" y1="800.5" x2="2786" y2="800.5" stroke="black"/>
+<line x1="3000.5" y1="786" x2="3000.5" y2="814" stroke="black"/>
+<line x1="3014" y1="800.5" x2="2986" y2="800.5" stroke="black"/>
+<line x1="3200.5" y1="786" x2="3200.5" y2="814" stroke="black"/>
+<line x1="3214" y1="800.5" x2="3186" y2="800.5" stroke="black"/>
+<g clip-path="url(#clip13_29_1825)">
+<rect width="1200" height="600" transform="translate(2400 1200)" fill="#D9D9D9"/>
+<rect x="2400" y="1200" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="2599.5" y1="1800" x2="2599.5" y2="1200" stroke="black"/>
+<line x1="2799.5" y1="1800" x2="2799.5" y2="1200" stroke="black"/>
+<line x1="2999.5" y1="1800" x2="2999.5" y2="1200" stroke="black"/>
+<line x1="3199.5" y1="1800" x2="3199.5" y2="1200" stroke="black"/>
+<line x1="3399.5" y1="1800" x2="3399.5" y2="1200" stroke="black"/>
+<line x1="2400" y1="1599.5" x2="3600" y2="1599.5" stroke="black"/>
+<line x1="2400" y1="1399.5" x2="3600" y2="1399.5" stroke="black"/>
+<circle cx="3400" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="3400" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="3200" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="3000" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="2800" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="2600" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="2600" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="2800" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="3000" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="3200" cy="1600" r="25" fill="#D9D9D9"/>
+<line x1="3399.5" y1="1385" x2="3399.5" y2="1413" stroke="black"/>
+<line x1="3413" y1="1399.5" x2="3385" y2="1399.5" stroke="black"/>
+<line x1="3399.5" y1="1586" x2="3399.5" y2="1614" stroke="black"/>
+<line x1="3413" y1="1600.5" x2="3385" y2="1600.5" stroke="black"/>
+<line x1="3200.5" y1="1586" x2="3200.5" y2="1614" stroke="black"/>
+<line x1="3214" y1="1600.5" x2="3186" y2="1600.5" stroke="black"/>
+<line x1="3001.5" y1="1586" x2="3001.5" y2="1614" stroke="black"/>
+<line x1="3015" y1="1600.5" x2="2987" y2="1600.5" stroke="black"/>
+<line x1="2802.5" y1="1586" x2="2802.5" y2="1614" stroke="black"/>
+<line x1="2816" y1="1600.5" x2="2788" y2="1600.5" stroke="black"/>
+<line x1="2603.5" y1="1586" x2="2603.5" y2="1614" stroke="black"/>
+<line x1="2617" y1="1600.5" x2="2589" y2="1600.5" stroke="black"/>
+<line x1="2600.5" y1="1386" x2="2600.5" y2="1414" stroke="black"/>
+<line x1="2614" y1="1400.5" x2="2586" y2="1400.5" stroke="black"/>
+<line x1="2800.5" y1="1386" x2="2800.5" y2="1414" stroke="black"/>
+<line x1="2814" y1="1400.5" x2="2786" y2="1400.5" stroke="black"/>
+<line x1="3000.5" y1="1386" x2="3000.5" y2="1414" stroke="black"/>
+<line x1="3014" y1="1400.5" x2="2986" y2="1400.5" stroke="black"/>
+<line x1="3200.5" y1="1386" x2="3200.5" y2="1414" stroke="black"/>
+<line x1="3214" y1="1400.5" x2="3186" y2="1400.5" stroke="black"/>
+<g clip-path="url(#clip14_29_1825)">
+<rect width="1200" height="600" transform="translate(1200)" fill="#D9D9D9"/>
+<rect x="1200" width="1200" height="600" fill="#D9D9D9"/>
+<rect x="1200" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="1399.5" y1="600.001" x2="1399.5" y2="0.00012207" stroke="black"/>
+<line x1="1599.5" y1="600.001" x2="1599.5" y2="0.00012207" stroke="black"/>
+<line x1="1799.5" y1="600.001" x2="1799.5" y2="0.00012207" stroke="black"/>
+<line x1="1999.5" y1="600.001" x2="1999.5" y2="0.00012207" stroke="black"/>
+<line x1="2199.5" y1="600.001" x2="2199.5" y2="0.00012207" stroke="black"/>
+<line x1="1200" y1="399.5" x2="2400" y2="399.5" stroke="black"/>
+<line x1="1200" y1="199.5" x2="2400" y2="199.5" stroke="black"/>
+<circle cx="2200" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="2200" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="2000" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="1800" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="1600" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="1400" cy="200" r="25" fill="#D9D9D9"/>
+<circle cx="1400" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="1600" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="1800" cy="400" r="25" fill="#D9D9D9"/>
+<circle cx="2000" cy="400" r="25" fill="#D9D9D9"/>
+<line x1="2199.5" y1="185" x2="2199.5" y2="213" stroke="black"/>
+<line x1="2213" y1="199.5" x2="2185" y2="199.5" stroke="black"/>
+<line x1="2199.5" y1="386" x2="2199.5" y2="414" stroke="black"/>
+<line x1="2213" y1="400.5" x2="2185" y2="400.5" stroke="black"/>
+<line x1="2000.5" y1="386" x2="2000.5" y2="414" stroke="black"/>
+<line x1="2014" y1="400.5" x2="1986" y2="400.5" stroke="black"/>
+<line x1="1801.5" y1="386" x2="1801.5" y2="414" stroke="black"/>
+<line x1="1815" y1="400.5" x2="1787" y2="400.5" stroke="black"/>
+<line x1="1602.5" y1="386" x2="1602.5" y2="414" stroke="black"/>
+<line x1="1616" y1="400.5" x2="1588" y2="400.5" stroke="black"/>
+<line x1="1403.5" y1="386" x2="1403.5" y2="414" stroke="black"/>
+<line x1="1417" y1="400.5" x2="1389" y2="400.5" stroke="black"/>
+<line x1="1400.5" y1="186" x2="1400.5" y2="214" stroke="black"/>
+<line x1="1414" y1="200.5" x2="1386" y2="200.5" stroke="black"/>
+<line x1="1600.5" y1="186" x2="1600.5" y2="214" stroke="black"/>
+<line x1="1614" y1="200.5" x2="1586" y2="200.5" stroke="black"/>
+<line x1="1800.5" y1="186" x2="1800.5" y2="214" stroke="black"/>
+<line x1="1814" y1="200.5" x2="1786" y2="200.5" stroke="black"/>
+<line x1="2000.5" y1="186" x2="2000.5" y2="214" stroke="black"/>
+<line x1="2014" y1="200.5" x2="1986" y2="200.5" stroke="black"/>
+<g clip-path="url(#clip15_29_1825)">
+<rect width="1200" height="600" transform="translate(1200 600)" fill="#D9D9D9"/>
+<rect x="1200" y="600" width="1200" height="600" fill="#D9D9D9"/>
+<rect x="1200" y="600" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="1399.5" y1="1200" x2="1399.5" y2="600" stroke="black"/>
+<line x1="1599.5" y1="1200" x2="1599.5" y2="600" stroke="black"/>
+<line x1="1799.5" y1="1200" x2="1799.5" y2="600" stroke="black"/>
+<line x1="1999.5" y1="1200" x2="1999.5" y2="600" stroke="black"/>
+<line x1="2199.5" y1="1200" x2="2199.5" y2="600" stroke="black"/>
+<line x1="1200" y1="999.5" x2="2400" y2="999.5" stroke="black"/>
+<line x1="1200" y1="799.5" x2="2400" y2="799.5" stroke="black"/>
+<circle cx="2200" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="2200" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="2000" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="1800" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="1600" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="1400" cy="800" r="25" fill="#D9D9D9"/>
+<circle cx="1400" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="1600" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="1800" cy="1000" r="25" fill="#D9D9D9"/>
+<circle cx="2000" cy="1000" r="25" fill="#D9D9D9"/>
+<line x1="2199.5" y1="785" x2="2199.5" y2="813" stroke="black"/>
+<line x1="2213" y1="799.5" x2="2185" y2="799.5" stroke="black"/>
+<line x1="2199.5" y1="986" x2="2199.5" y2="1014" stroke="black"/>
+<line x1="2213" y1="1000.5" x2="2185" y2="1000.5" stroke="black"/>
+<line x1="2000.5" y1="986" x2="2000.5" y2="1014" stroke="black"/>
+<line x1="2014" y1="1000.5" x2="1986" y2="1000.5" stroke="black"/>
+<line x1="1801.5" y1="986" x2="1801.5" y2="1014" stroke="black"/>
+<line x1="1815" y1="1000.5" x2="1787" y2="1000.5" stroke="black"/>
+<line x1="1602.5" y1="986" x2="1602.5" y2="1014" stroke="black"/>
+<line x1="1616" y1="1000.5" x2="1588" y2="1000.5" stroke="black"/>
+<line x1="1403.5" y1="986" x2="1403.5" y2="1014" stroke="black"/>
+<line x1="1417" y1="1000.5" x2="1389" y2="1000.5" stroke="black"/>
+<line x1="1400.5" y1="786" x2="1400.5" y2="814" stroke="black"/>
+<line x1="1414" y1="800.5" x2="1386" y2="800.5" stroke="black"/>
+<line x1="1600.5" y1="786" x2="1600.5" y2="814" stroke="black"/>
+<line x1="1614" y1="800.5" x2="1586" y2="800.5" stroke="black"/>
+<line x1="1800.5" y1="786" x2="1800.5" y2="814" stroke="black"/>
+<line x1="1814" y1="800.5" x2="1786" y2="800.5" stroke="black"/>
+<line x1="2000.5" y1="786" x2="2000.5" y2="814" stroke="black"/>
+<line x1="2014" y1="800.5" x2="1986" y2="800.5" stroke="black"/>
+<g clip-path="url(#clip16_29_1825)">
+<rect width="1200" height="600" transform="translate(1200 1200)" fill="#D9D9D9"/>
+<rect x="1200" y="1200" width="1200" height="600" fill="#D9D9D9"/>
+<rect x="1200" y="1200" width="1200" height="600" fill="#D9D9D9"/>
+</g>
+<line x1="1399.5" y1="1800" x2="1399.5" y2="1200" stroke="black"/>
+<line x1="1599.5" y1="1800" x2="1599.5" y2="1200" stroke="black"/>
+<line x1="1799.5" y1="1800" x2="1799.5" y2="1200" stroke="black"/>
+<line x1="1999.5" y1="1800" x2="1999.5" y2="1200" stroke="black"/>
+<line x1="2199.5" y1="1800" x2="2199.5" y2="1200" stroke="black"/>
+<line x1="1200" y1="1599.5" x2="2400" y2="1599.5" stroke="black"/>
+<line x1="1200" y1="1399.5" x2="2400" y2="1399.5" stroke="black"/>
+<circle cx="2200" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="2200" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="2000" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="1800" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="1600" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="1400" cy="1400" r="25" fill="#D9D9D9"/>
+<circle cx="1400" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="1600" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="1800" cy="1600" r="25" fill="#D9D9D9"/>
+<circle cx="2000" cy="1600" r="25" fill="#D9D9D9"/>
+<line x1="2199.5" y1="1385" x2="2199.5" y2="1413" stroke="black"/>
+<line x1="2213" y1="1399.5" x2="2185" y2="1399.5" stroke="black"/>
+<line x1="2199.5" y1="1586" x2="2199.5" y2="1614" stroke="black"/>
+<line x1="2213" y1="1600.5" x2="2185" y2="1600.5" stroke="black"/>
+<line x1="2000.5" y1="1586" x2="2000.5" y2="1614" stroke="black"/>
+<line x1="2014" y1="1600.5" x2="1986" y2="1600.5" stroke="black"/>
+<line x1="1801.5" y1="1586" x2="1801.5" y2="1614" stroke="black"/>
+<line x1="1815" y1="1600.5" x2="1787" y2="1600.5" stroke="black"/>
+<line x1="1602.5" y1="1586" x2="1602.5" y2="1614" stroke="black"/>
+<line x1="1616" y1="1600.5" x2="1588" y2="1600.5" stroke="black"/>
+<line x1="1403.5" y1="1586" x2="1403.5" y2="1614" stroke="black"/>
+<line x1="1417" y1="1600.5" x2="1389" y2="1600.5" stroke="black"/>
+<line x1="1400.5" y1="1386" x2="1400.5" y2="1414" stroke="black"/>
+<line x1="1414" y1="1400.5" x2="1386" y2="1400.5" stroke="black"/>
+<line x1="1600.5" y1="1386" x2="1600.5" y2="1414" stroke="black"/>
+<line x1="1614" y1="1400.5" x2="1586" y2="1400.5" stroke="black"/>
+<line x1="1800.5" y1="1386" x2="1800.5" y2="1414" stroke="black"/>
+<line x1="1814" y1="1400.5" x2="1786" y2="1400.5" stroke="black"/>
+<line x1="2000.5" y1="1386" x2="2000.5" y2="1414" stroke="black"/>
+<line x1="2014" y1="1400.5" x2="1986" y2="1400.5" stroke="black"/>
+</g>
+<defs>
+<clipPath id="clip0_29_1825">
+<rect width="4800" height="2400" fill="white"/>
+</clipPath>
+<clipPath id="clip1_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(0.000244141)"/>
+</clipPath>
+<clipPath id="clip2_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(0.000244141 600)"/>
+</clipPath>
+<clipPath id="clip3_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(0.000244141 1200)"/>
+</clipPath>
+<clipPath id="clip4_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(0.000244141 1800)"/>
+</clipPath>
+<clipPath id="clip5_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(1200 1800)"/>
+</clipPath>
+<clipPath id="clip6_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(2400 1800)"/>
+</clipPath>
+<clipPath id="clip7_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(3600 1800)"/>
+</clipPath>
+<clipPath id="clip8_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(3600 1200)"/>
+</clipPath>
+<clipPath id="clip9_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(3600 600)"/>
+</clipPath>
+<clipPath id="clip10_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(3600)"/>
+</clipPath>
+<clipPath id="clip11_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(2400)"/>
+</clipPath>
+<clipPath id="clip12_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(2400 600)"/>
+</clipPath>
+<clipPath id="clip13_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(2400 1200)"/>
+</clipPath>
+<clipPath id="clip14_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(1200)"/>
+</clipPath>
+<clipPath id="clip15_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(1200 600)"/>
+</clipPath>
+<clipPath id="clip16_29_1825">
+<rect width="1200" height="600" fill="white" transform="translate(1200 1200)"/>
+</clipPath>
+</defs>
 </svg>

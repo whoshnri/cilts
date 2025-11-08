@@ -1,7 +1,7 @@
 // components/CollabDetailsPage.tsx
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,10 +12,11 @@ import {
   ExternalLink,
   Share2Icon,
 } from "lucide-react";
-import { type Collab, type Comment } from "@/types/index";
+import { Collab, Comment, User, CollabTag } from "@prisma/client";
 import { Tiro_Devanagari_Marathi } from "next/font/google";
 import { Button } from "./ui/button";
 import SharePopup from "./share-popup";
+import { addComment, addView, bookmarkCollab, removeBookmarkCollab, upVoteCollab } from "@/app/actions/collabsOps";
 
 const TiroFont = Tiro_Devanagari_Marathi({
   subsets: ["latin"],
@@ -23,57 +24,149 @@ const TiroFont = Tiro_Devanagari_Marathi({
   variable: "--font-manjari",
 });
 
-// Dummy current user for posting comments
-const currentUser = {
-  id: "user_current",
-  username: "You",
-  image: "/images/avatar-placeholder.png",
+
+export type CompactCollab = {
+  id: string;
+  createdAt: Date;
+  authorId: string | null;
+  slug: string;
+  title: string;
+  tags: CollabTag[];
+  bookmarkedBy: User[];
+  subtitle: string | null;
+  description: string | null;
+  imageUrl: string | null;
+  link: string | null;
+  upvotes: number;
+  views: number;
+  updatedAt: Date;
+} & {
+  author: {
+    id: string;
+    username: string;
+    email: string | null;
+    password: string;
+    image: string | null;
+    createdAt: Date;
+  } | null;
+  comments: ({
+    id: string;
+    createdAt: Date;
+    content: string;
+    collabId: string;
+    authorId: string | null;
+  } & {
+    author: {
+      id: string;
+      username: string;
+      email: string | null;
+      password: string;
+      image: string | null;
+      createdAt: Date;
+    } | null;
+  })[];
 };
 
+
 interface CollabDetailsPageProps {
-  initialCollabData: Collab;
+  initialCollabData: CompactCollab;
+  currentUser: Omit<User, "password"> | null;
 }
 
 const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
   initialCollabData,
+  currentUser,
 }) => {
   const [collab, setCollab] = useState(initialCollabData);
   const [newComment, setNewComment] = useState("");
-  const [isUpvoted, setIsUpvoted] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isUpvoted, setIsUpvoted] = useState(initialCollabData.comments.some(comment => comment.authorId === currentUser?.id));
+  const [isBookmarked, setIsBookmarked] = useState(initialCollabData.bookmarkedBy.some(user => user.id === currentUser?.id));
   const [showSharePopup, setShowSharePopup] = useState(false);
 
   // Dummy upvote handler
-  const handleUpvote = () => {
-    setIsUpvoted(!isUpvoted);
-    setCollab((prev) => ({
-      ...prev,
-      upvotes: isUpvoted ? prev.upvotes - 1 : prev.upvotes + 1,
-    }));
-    console.log("Upvote toggled!");
+  const handleUpvote = async () => {
+    if (!currentUser) {
+      alert("You must be logged in to upvote.");
+      return;
+    }
+    if (isUpvoted) {
+      return
+    }else{
+      const res = await upVoteCollab(collab.id, currentUser.id);
+      if(res){
+        setCollab((prev) => ({
+          ...prev,
+          upvotes: prev.upvotes + 1,
+        }));
+        setIsUpvoted(true);
+      }
+    }
   };
 
+  async function markView(){
+    return await addView(collab.id);
+  } 
+
+  useEffect(() => {
+    localStorage.getItem(`viewed_${collab.id}`) !== "true" ?  (async () => {
+      const res = await markView();
+      if(res){
+        localStorage.setItem(`viewed_${collab.id}`, "true");
+        setCollab((prev) => ({
+          ...prev,
+          views: prev.views + 1,
+        }));
+      }
+    })() : null;
+  },[]);
+
   // Dummy bookmark handler
-  const handleBookmark = () => {
-    setIsBookmarked(!isBookmarked);
-    console.log("Bookmark toggled!");
+  const handleBookmark = async() => {
+    if (isBookmarked) {
+      const res = await removeBookmarkCollab(collab.id, currentUser!.id);
+      if(res){
+        setIsBookmarked(false);
+      }
+    } else {
+      const res = await bookmarkCollab(collab.id, currentUser!.id);
+      if(res){
+        setIsBookmarked(true);
+      }else{
+        alert("Failed to bookmark. Please try again.");
+      }
+    }
   };
 
   // Dummy comment submission handler
-  const handleCommentSubmit = (e: React.FormEvent) => {
+  const handleCommentSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     if (!newComment.trim()) return;
+      if (!currentUser) {
+      alert("You must be logged in to post a comment.");
+      return;
+    }
 
-    const comment: Comment = {
-      id: `comment_${Date.now()}`,
+    const comment = {
       content: newComment,
-      author: currentUser,
-      createdAt: new Date(),
+      authorId: currentUser.id,
     };
 
-    setCollab((prev) => ({ ...prev, comments: [comment, ...prev.comments] }));
-    setNewComment("");
+    try{
+      const res = await addComment(collab.id, comment)
+      if (res.status === "success") {
+        const addedComment = res.metadata;
+        setCollab((prev) => ({
+          ...prev,
+          comments: [addedComment, ...prev.comments],
+        }));
+        setNewComment("");
+      }
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    }
   };
+
+
 
   return (
     <section className=" py-24 sm:py-40">
@@ -83,12 +176,11 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
           <main className="lg:col-span-2">
             {collab.imageUrl && (
               <div className="relative mb-8 h-80 w-full overflow-hidden rounded-2xl shadow-lg">
-                <Image
+                <img 
                   src={collab.imageUrl}
                   alt={collab.title}
-                  layout="fill"
-                  objectFit="cover"
-                  priority
+                  style={{ objectFit: "cover" }}
+                  className="w-full h-full aspect-video"
                 />
               </div>
             )}
@@ -112,12 +204,12 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                   placeholder="Share your thoughts..."
-                  className="w-full rounded-lg border-gray-800 p-4 shadow-xs focus:border-gray-500 focus:ring-yellow-500"
+                  className="w-full rounded-lg border-gray-800 p-4 shadow-xs focus:border-gray-500 focus:ring-black"
                   rows={4}
                 />
                 <button
                   type="submit"
-                  className="mt-4 rounded-full bg-yellow-600 px-6 py-2 font-semibold text-white transition hover:bg-yellow-700 disabled:opacity-50"
+                  className="mt-4 rounded-full bg-black px-6 py-2 font-semibold text-white transition hover:bg-black disabled:opacity-50"
                   disabled={!newComment.trim()}
                 >
                   Post Comment
@@ -126,18 +218,18 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
               <div className="mt-8 space-y-6">
                 {collab.comments.map((comment) => (
                   <div key={comment.id} className="flex items-start space-x-4">
-                    <Image
+                    <img
                       src={
-                        comment.author.image || "/images/avatar-placeholder.png"
+                        comment.author?.image || "/images/avatar-placeholder.png"
                       }
-                      alt={comment.author.username}
+                      alt={comment.author?.username || "User Avatar"}
                       width={40}
                       height={40}
                       className="rounded-full"
                     />
                     <div>
                       <p className="font-semibold text-gray-800">
-                        {comment.author.username}
+                        {comment.author?.username || "Unknown User"}
                       </p>
                       <p className="text-gray-600">{comment.content}</p>
                       <p className="mt-1 text-xs text-gray-400">
@@ -155,18 +247,18 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
             <div className="sticky top-24 space-y-8">
               <div className="rounded-2xl  bg-white/30 backdrop-blur-2xl p-6 shadow-xs">
                 <div className="flex items-center space-x-3 border-b pb-4">
-                  <Image
+                  <img
                     src={
-                      collab.author.image || "/images/avatar-placeholder.png"
+                      collab.author?.image || "/images/avatar-placeholder.png"
                     }
-                    alt={collab.author.username}
+                    alt={collab.author?.username || "User Avatar"}
                     width={48}
                     height={48}
                     className="rounded-full"
                   />
                   <div>
                     <p className="font-semibold text-gray-800">
-                      {collab.author.username}
+                      {collab.author?.username || "Unknown User"}
                     </p>
                     <p className="text-xs text-gray-500">Creator</p>
                   </div>
@@ -186,8 +278,8 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
                     onClick={handleUpvote}
                     className={`flex w-full items-center justify-center gap-2 rounded-full border-2 py-3 font-bold transition ${
                       isUpvoted
-                        ? "border-yellow-600 bg-yellow-600 text-white"
-                        : "border-yellow-600 bg-yellow-100/50 text-yellow-700 hover:bg-yellow-100"
+                        ? "border-black bg-black text-white"
+                        : "border-black bg-black/10 text-black hover:bg-white/40"
                     }`}
                   >
                     <ArrowUp size={20} />
@@ -211,7 +303,7 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
                         setShowSharePopup(true);
                     }}
                     rel="noopener noreferrer"
-                    className="mt-3 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-yellow-600 py-3 font-semibold text-white transition hover:bg-yellow-800"
+                    className="mt-3 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-black py-3 font-semibold text-white transition hover:bg-black"
                   >
                     <Share2Icon size={18} />
                     Share Collab

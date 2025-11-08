@@ -30,13 +30,13 @@ const Footer: FC = () => {
             </p>
             <div className="flex space-x-4">
               <Link href="#" aria-label="Twitter">
-                <Twitter className="h-6 w-6 text-gray-500 transition-colors hover:text-yellow-600" />
+                <Twitter className="h-6 w-6 text-gray-500 transition-colors hover:text-black" />
               </Link>
               <Link href="#" aria-label="GitHub">
-                <Github className="h-6 w-6 text-gray-500 transition-colors hover:text-yellow-600" />
+                <Github className="h-6 w-6 text-gray-500 transition-colors hover:text-black" />
               </Link>
               <Link href="#" aria-label="LinkedIn">
-                <Linkedin className="h-6 w-6 text-gray-500 transition-colors hover:text-yellow-600" />
+                <Linkedin className="h-6 w-6 text-gray-500 transition-colors hover:text-black" />
               </Link>
             </div>
           </div>
@@ -44,9 +44,9 @@ const Footer: FC = () => {
           <div className="md:col-span-4 lg:col-span-4">
             <p className="mb-4 font-semibold tracking-wide">Quick Links</p>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/careers" className="text-gray-600 transition-colors hover:text-yellow-600 hover:underline">Collabs Library</Link></li>
-              <li><Link href="/leaderboard" className="text-gray-600 transition-colors hover:text-yellow-600 hover:underline">Leaderboard</Link></li>
-              <li><Link href="/contact" className="text-gray-600 transition-colors hover:text-yellow-600 hover:underline">Contact</Link></li>
+              <li><Link href="/careers" className="text-gray-600 transition-colors hover:text-black hover:underline">Collabs Library</Link></li>
+              <li><Link href="/leaderboard" className="text-gray-600 transition-colors hover:text-black hover:underline">Leaderboard</Link></li>
+              <li><Link href="/contact" className="text-gray-600 transition-colors hover:text-black hover:underline">Contact</Link></li>
             </ul>
           </div>
 
@@ -62,11 +62,11 @@ const Footer: FC = () => {
                   placeholder="Enter your email"
                   required
                   type="email"
-                  className="w-full grow rounded-md border-gray-300 px-4 py-2 text-sm shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
+                  className="w-full grow rounded-md border-gray-300 px-4 py-2 text-sm shadow-sm focus:border-black focus:ring-black"
                 />
                 <button
                   type="submit"
-                  className="rounded-md bg-yellow-600 px-6 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-yellow-700"
+                  className="rounded-md bg-black px-6 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-black"
                 >
                   Subscribe
                 </button>

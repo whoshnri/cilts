@@ -27,15 +27,14 @@ export default PinterestGrid;
 
 interface GridItemProps {
   children: ReactNode;
-  span: number;
 }
 
-const GridItem: FC<GridItemProps> = ({ children, span }) => {
+const GridItem: FC<GridItemProps> = ({ children }) => {
   return (
     // style sets "grid-row-end: span <n>"
     <div
       className="overflow-hidden rounded-xl bg-black"
-      style={{ gridRowEnd: `span ${span}` }}
+      style={{ gridRowEnd: `span ${Math.ceil(1 / 2)}` }}
     >
       {children}
     </div>

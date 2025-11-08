@@ -3,31 +3,23 @@ import { ArrowUpRight } from "lucide-react";
 import { FC } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { Collab, CollabTag } from "@prisma/client";
+import { CollabWithTags } from "@/app/collabs/page";
 
-export interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: StaticImageData;
-  tags: string[];
-  link?: string;
-}
+export type Project = CollabWithTags;
 
 interface ProjectCardProps {
   project: Project;
-  hoveredItemId: number | null;
+  hoveredItemId: string | null;
 }
 
 const ProjectCard: FC<ProjectCardProps> = ({ project, hoveredItemId }) => {
   return (
     <div className="relative h-96 w-full shrink-0 overflow-hidden rounded-3xl">
-      <Image
-        src={project.image}
+      <img
+        src={project.imageUrl || "/images/main.jpg"}
         alt={project.title}
-        layout="fill"
-        objectFit="cover"
-        className="transition-transform duration-300 ease-in-out"
-        placeholder="blur"
+        className="transition-transform duration-300 ease-in-out h-full w-full object-cover"
       />
       {/* Render overlay and text only if the card is active */}
       {project.id === hoveredItemId && (
@@ -48,20 +40,19 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, hoveredItemId }) => {
             <div className="flex flex-col gap-2">
               {project.tags.map((tag) => (
                 <span
-                  key={tag}
+                  key={tag.id}
                   className="rounded-full bg-white/20 px-3 py-1 text-xs"
                 >
-                  {tag}
+                  {tag.name}
                 </span>
               ))}
             </div>
             
             {/* --- MODIFIED LINK ELEMENT --- */}
             <Link
-              href={project.link || "#"}
+              href={`collabs/${project.id}`}
               className="group flex h-10 px-3 items-center justify-center rounded-full border border-white/50"
-              target="_blank"
-              rel="noopener noreferrer"
+              
             >
               {/* Icon */}
               <div className="">

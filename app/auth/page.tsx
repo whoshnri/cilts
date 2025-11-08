@@ -3,10 +3,13 @@
 
 import { FC, useState, useEffect } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import crown from "@/public/crown.svg"
+import Image from "next/image";
+import { createUser, loginUser } from "../actions/authOps";
 
 const AuthForm: FC = () => {
-  const [formMode, setFormMode] = useState<"login" | "signup">("signup");
-
+  const [formMode, setFormMode] = useState<"login" | "signup">("login");
+  const [login, setLogin] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -23,18 +26,24 @@ const AuthForm: FC = () => {
     setFormMode((prevMode) => (prevMode === "login" ? "signup" : "login"));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formMode === "login") {
-      console.log("Attempting to log in with:", { email, password });
-      alert("Logging in! Check console for data.");
+      // check format with regex to see if login is email or username
+      const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(login);
+      const res = await loginUser(isEmail ? login : undefined, !isEmail ? login : undefined, password);
+      // get the session token from res if successful
+      if (res.status === "success") {
+        alert("Login successful!");
+      } else {
+        alert(res.message);
+      }
     } else {
-      console.log("Attempting to sign up with:", {
-        email,
-        userName,
-        password,
-      });
-      alert("Signing up! Check console for data.");
+      const res = await createUser(email, userName, password);
+      if (res.status === "success") {
+        setFormMode("login");
+      }
+      alert(res.message);
     }
   };
 
@@ -45,7 +54,13 @@ const AuthForm: FC = () => {
       <div className="flex w-full max-w-4xl flex-col items-center gap-12">
         
         {/* Form Card */}
-        <div className="w-full max-w-md rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur-xl md:p-10 transition-all duration-200">
+        <div className=" relative w-full max-w-md rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur-xl md:p-10 transition-all duration-200">
+        <Image 
+            src={crown}
+            alt="CILTS Crown Logo"
+            className="w-40 h-40 mb-4 mx-auto absolute -top-20 left-0 transform -translate-x-1/2"
+          />
+          {/* Header */}
           <div className="text-left">
             <h1 className="text-3xl font-bold text-gray-900">
               {isLoginMode ? "Sign in" : "Sign up"}
@@ -57,7 +72,7 @@ const AuthForm: FC = () => {
               <button
                 type="button"
                 onClick={toggleMode}
-                className="font-semibold text-yellow-600 cursor-pointer hover:underline focus:outline-none"
+                className="font-semibold text-black cursor-pointer hover:underline focus:outline-none"
               >
                 {isLoginMode ? "Sign up" : "Sign in"}
               </button>
@@ -69,16 +84,16 @@ const AuthForm: FC = () => {
             {/* Email Address */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
+                { !isLoginMode ? "Email address" : "Username or Email address" }
               </label>
               <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
+                id={!isLoginMode ? "email" : "usernameOrEmail"}
+                name={!isLoginMode ? "email" : "usernameOrEmail"}
+                type={!isLoginMode ? "email" : "text"}
+                autoComplete={!isLoginMode ? "email" : "usernameOrEmail"}
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={!isLoginMode ? email : login}
+                onChange={(e) => !isLoginMode ? setEmail(e.target.value) : setLogin(e.target.value)}
                 className="mt-1 p-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
               />
             </div>
@@ -87,7 +102,7 @@ const AuthForm: FC = () => {
             {!isLoginMode && (
               <div>
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                  User name
+                  Username
                 </label>
                 <input
                   id="username"
@@ -135,7 +150,7 @@ const AuthForm: FC = () => {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-xl bg-yellow-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+                className="flex w-full justify-center rounded-xl bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-black/80 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
               >
                 {isLoginMode ? "Sign in" : "Sign up"}
               </button>
@@ -146,11 +161,11 @@ const AuthForm: FC = () => {
           {!isLoginMode && (
             <p className="mt-8 text-center text-xs text-gray-600">
               By signing up, you accept our{" "}
-              <a href="/terms" className="font-medium text-yellow-700 hover:underline">
+              <a href="/terms" className="font-medium text-black hover:underline">
                 terms of service
               </a>{" "}
               and{" "}
-              <a href="/privacy" className="font-medium text-yellow-700 hover:underline">
+              <a href="/privacy" className="font-medium text-black hover:underline">
                 privacy policy
               </a>
               .

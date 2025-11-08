@@ -37,7 +37,7 @@ const NewsletterSignup: FC = () => {
           />
           <button
             type="submit"
-            className="shrink-0 rounded-full bg-yellow-600 px-6 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2"
+            className="shrink-0 rounded-full bg-black px-6 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-black/90 focus:outline-none focus:ring-2 cursor-pointer"
           >
             Sign up
           </button>

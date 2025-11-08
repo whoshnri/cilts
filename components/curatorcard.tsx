@@ -2,15 +2,14 @@
 import { FC } from "react";
 import Image, { StaticImageData } from "next/image";
 import logo from "@/public/logo.svg";
-import curatorImage from "@/public/images/main.jpg";
+import curatorImage from "@/public/images/founder.jpeg";
 
 const CuratorCard: FC = () => {
   return (
     <section className="w-full py-20">
       <div className="container mx-auto max-w-4xl">
         {/* Main card container */}
-        <div className="relative rounded-t-3xl md:rounded-3xl bg-[#f5f3ef] px-8 py-10 md:py-4">
-          
+        <div className="relative rounded-t-3xl md:rounded-3xl bg-white px-8 py-10 md:py-4">
           {/* Decorative SVG Arc in the corner */}
           <svg
             className="absolute top-0 right-0 h-48 w-48 opacity-50"
@@ -28,9 +27,8 @@ const CuratorCard: FC = () => {
           </svg>
 
           <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
-            
             {/* Curator Image with Gradient Background */}
-            <div className="w-48 shrink-0 rounded-2xl bg-linear-to-br from-yellow-300 to-zinc-400 p-2 md:w-56">
+            <div className="w-48 shrink-0 rounded-2xl bg-linear-to-br from-black to-zinc-400 p-2 md:w-56">
               <Image
                 src={curatorImage}
                 alt={`Photo of Timmy`}
@@ -44,21 +42,21 @@ const CuratorCard: FC = () => {
               <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-gray-500">
                 Meet the Curator
               </h2>
-              <p className="font-serif text-2xl font-medium text-gray-800 md:text-3xl">
-                "{`Curating ideas that shape the future.`}"
+              <p className="font-serif text-xl font-medium text-gray-800 md:text-2xl">
+                
+                {`Founded by Timothy Bolarinwa, CLIS exists to champion collaboration as one of the highest forms of creativity.
+As Curator, He aims to close the gap between imagination and execution by turning what ifs into reality.
+His belief is simple: The future belongs to those who create together.
+`}
+                
               </p>
               <div className="mt-8 flex items-center justify-center gap-4 md:justify-start">
-                <Image
-                  src={logo}
-                  alt={`Logo`}
-                  className="h-6 w-auto"
-                />
+                <Image src={logo} alt={`Logo`} className="h-6 w-auto" />
                 <span className="text-sm font-semibold uppercase tracking-wider text-gray-500">
-                  {`Timmy, Curator`}
+                  {`Timothy Bolarinwa`}
                 </span>
               </div>
             </div>
-
           </div>
         </div>
       </div>

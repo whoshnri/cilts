@@ -1,70 +1,13 @@
 // components/MyWorks.tsx
 "use client";
 
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useState, useEffect, use } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { type EmblaOptionsType } from "embla-carousel";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import ProjectCard, { Project } from "./collabcardHome";
+import { fetchFeaturedCollabs } from "@/app/actions/collabsOps";
 
-// Import your images
-import snowyMountain from "@/public/images/main.jpg";
-import swirlingOcean from "@/public/images/main.jpg";
-import sandDunes from "@/public/images/main.jpg";
-import rockyCoast from "@/public/images/main.jpg";
-
-// Define the data for the projects
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Frozen Lakes",
-    description: "Discovering the serene beauty of winter landscapes.",
-    image: snowyMountain,
-    tags: ["Landscape", "Winter"],
-    link: "/collabs/this-is-a-test-collab",
-  },
-  {
-    id: 2,
-    title: "Ocean's Fury",
-    description: "The raw power and mesmerizing patterns of the sea.",
-    image: swirlingOcean,
-    tags: ["Ocean", "Aerial"],
-    link: "/collabs/this-is-a-test-collab"
-  },
-  {
-    id: 3,
-    title: "Dancing Dunes",
-    description:
-      "Capturing the breathtaking beauty of sand dunes through artistic lensmanship.",
-    image: sandDunes,
-    tags: ["Photography", "Art Direction"],
-    link: "/collabs/this-is-a-test-collab"
-  },
-  {
-    id: 4,
-    title: "Coastal Guardians",
-    description: "Ancient rock formations standing tall against the tides.",
-    image: rockyCoast,
-    tags: ["Coastline", "Nature"],
-    link: "/collabs/this-is-a-test-collab"
-  },
-  {
-    id: 5,
-    title: "Mountain Majesty",
-    description: "The silent grandeur of towering peaks.",
-    image: snowyMountain,
-    tags: ["Mountains", "Adventure"],
-    link: "/collabs/this-is-a-test-collab"
-  },
-  {
-    id: 6,
-    title: "Desert Waves",
-    description: "Ripples of sand stretching to the horizon.",
-    image: sandDunes,
-    tags: ["Desert", "Travel"],
-    link: "/collabs/this-is-a-test-collab"
-  },
-];
 
 // Define Embla carousel options for better readability
 const emblaOptions: EmblaOptionsType = {
@@ -73,7 +16,8 @@ const emblaOptions: EmblaOptionsType = {
 
 const MyWorks: FC = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions);
-  const [hoveredItemId, setHoveredItemId] = useState<number | null>(null);
+  const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -83,8 +27,23 @@ const MyWorks: FC = () => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const data = await fetchFeaturedCollabs()
+      if( data.status === "success" ) {
+        const projs = data.data
+        setProjects(projs)
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+
+
   return (
-    <section className="w-full max-w-6xl mx-auto rounded-t-4xl bg-[#f4f4f4] py-20 mt-20 px-4 sm:px-7">
+    <section className="w-full max-w-8xl mx-auto rounded-t-4xl bg-white py-20 mt-20 px-4 sm:px-7">
       <div className="container mx-auto">
         {/* Header */}
         <div className="mb-12 flex flex-col items-center justify-between gap-8 md:flex-row">
@@ -114,7 +73,7 @@ const MyWorks: FC = () => {
         </div>
 
         {/* Carousel Viewport: CRITICAL FIX - Must be 'overflow-hidden' */}
-        <div className="overflow-hidden" ref={emblaRef}>
+        <div className="overflow-hidden max-w-5xl mx-auto" ref={emblaRef}>
           {/* Carousel Track */}
           <div className="flex gap-2">
             {projects.map((project) => (

@@ -94,7 +94,7 @@ const LeaderboardPage: FC = () => {
                 onClick={() => setSortBy(key)}
                 className={`px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold rounded-full transition-colors ${
                   sortBy === key
-                    ? "bg-white text-yellow-700 shadow-sm"
+                    ? "bg-white text-black shadow-sm"
                     : "text-gray-500 hover:text-gray-700"
                 }`}
               >
@@ -104,7 +104,7 @@ const LeaderboardPage: FC = () => {
           </div>
           <button
             onClick={refreshLeaderboard}
-            className="flex items-center justify-center gap-2 rounded-full bg-yellow-600 font-semibold text-white shadow-sm transition hover:bg-yellow-700 p-2.5 sm:px-4 sm:py-2"
+            className="flex items-center justify-center gap-2 rounded-full bg-black font-semibold text-white shadow-sm transition hover:bg-black/70 p-2.5 sm:px-4 sm:py-2"
             aria-label="Refresh Leaderboard"
           >
             <RefreshCw size={16} />

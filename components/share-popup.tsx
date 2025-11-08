@@ -151,7 +151,7 @@ const SharePopup: FC<SharePopupProps> = ({ isOpen, onClose, collab }) => {
                 className={`flex shrink-0 items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors ${
                   hasCopied
                     ? "bg-green-600"
-                    : "bg-yellow-600 hover:bg-yellow-700"
+                    : "bg-black hover:bg-black/80"
                 }`}
               >
                 {hasCopied ? <Check size={16} /> : <Copy size={16} />}

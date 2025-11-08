@@ -3,28 +3,44 @@
 
 import Image from "next/image";
 import logo from "@/public/logo.svg";
-import { SearchIcon, X, Menu } from "lucide-react";
+import { SearchIcon, X, Menu, User2Icon } from "lucide-react";
 import { useState, useRef, useEffect, FC, RefObject } from "react";
 import { gsap } from "gsap";
 import { useOutsideClick } from "@/lib/hooks/useOutsideClick"; // Adjust the path as needed
 import Link from "next/link";
+import { getCurrentUser, logoutUser } from "@/app/actions/authOps";
+import { User } from "@prisma/client";
 
 const Navigation: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const [user, setUser] = useState<Omit<User, "password"> | null>(null);
 
-  // Close search bar on outside click
   useOutsideClick(searchRef as RefObject<HTMLDivElement>, () => {
     if (isSearchOpen) {
       setIsSearchOpen(false);
     }
   });
 
-  // Close mobile menu on outside click
+  useEffect(() => {
+    async function checkLoginStatus() {
+      const user = await getCurrentUser();
+
+      if (user) {
+        setLoggedIn(true);
+        setUser(user);
+      } else {
+        setLoggedIn(false);
+      }
+    }
+
+    checkLoginStatus();
+  }, []);
+
   useOutsideClick(navRef as RefObject<HTMLElement>, () => {
     if (isMenuOpen) {
       setIsMenuOpen(false);
@@ -60,10 +76,20 @@ const Navigation: FC = () => {
       );
     }
   }, [isMenuOpen]);
+  const handleLogout = async () => {
+    const res = await logoutUser();
+    if (res.status !== "success") {
+      alert("Logout failed. Please try again.");
+    } else {
+      window.location.href = "/";
+    }
+  };
 
   return (
-    <nav className="w-full fixed top-5 left-0 z-50 " ref={navRef}>
-      <div className="max-w-6xl mx-auto py-3 px-4 sm:px-6 flex md:grid md:grid-cols-3 justify-between items-center">
+    <nav
+      ref={navRef}
+    >
+      <div className="max-w-6xl mx-auto py-3 px-4 sm:px-6 flex md:grid md:grid-cols-3 justify-between items-center ">
         {/* Left: Logo */}
         <Link href={"/"} className="flex items-center w-fit rounded-xl">
           <Image src={logo} alt="Logo" className="h-4 md:h-8 w-auto" priority />
@@ -85,22 +111,43 @@ const Navigation: FC = () => {
         <div className="hidden md:flex items-center gap-4 text-sm font-medium md:justify-self-end-safe">
           <Link
             href={"/collabs"}
-            className="text-gray-700 bg-transparent rounded-xl p-2 backdrop-blur-2xl px-2  hover:underline cursor-pointer transition"
+            className="text-gray-700 bg-transparent rounded-xl p-2 backdrop-blur-2xl px-2  hover:bg-white/80 cursor-pointer transition"
           >
             Collabs
           </Link>
-          <Link
-            href={"/auth"}
-            className="text-gray-700 bg-transparent rounded-xl p-2 backdrop-blur-2xl px-2  hover:underline cursor-pointer transition"
-          >
-            Sign in
-          </Link>
+          {!loggedIn && (
+            <Link
+              href={"/auth"}
+              className="text-gray-700 bg-transparent rounded-xl p-2 backdrop-blur-2xl px-2  hover:bg-white/80 cursor-pointer transition"
+            >
+              Sign in
+            </Link>
+          )}
           <Link
             href={"/leaderboard"}
-            className="bg-yellow-500 backdrop-blur-2xl text-white px-5 py-2 rounded-md hover:bg-yellow-600 cursor-pointer transition"
+            className="bg-black backdrop-blur-2xl text-white px-5 py-2 rounded-md hover:bg-black/80 cursor-pointer transition"
           >
             Leaderboard
           </Link>
+          {/* user name if logged in */}
+          {loggedIn && (
+            <Link
+              href={"/profile"}
+              className={`text-gray-700 bg-transparent rounded-xl w-10 h-10 backdrop-blur-2xl ${
+                user?.image ? "p-1" : "p-2.5"
+              }  hover:bg-white/80 cursor-pointer transition`}
+            >
+              {user?.image ? (
+                <img
+                  src={user.image}
+                  alt="User Avatar"
+                  className="w-full h-full rounded-full"
+                />
+              ) : (
+                <User2Icon className="w-full h-full text-black" />
+              )}
+            </Link>
+          )}
         </div>
 
         {/* Mobile: Search and Hamburger */}
@@ -111,7 +158,7 @@ const Navigation: FC = () => {
           >
             <input
               type="text"
-              className={`bg-transparent outline-none w-full h-full text-xs ${
+              className={`bg-transparent backdrop-blur-2xl outline-none w-full h-full text-xs ${
                 isSearchOpen ? "block" : "hidden"
               }`}
               placeholder="Search collabs"
@@ -123,6 +170,22 @@ const Navigation: FC = () => {
               {isSearchOpen ? <X size={20} /> : <SearchIcon size={20} />}
             </button>
           </div>
+          {loggedIn && (
+            <Link
+              href={"/profile"}
+              className="text-gray-700 bg-transparent rounded-xl p-2 backdrop-blur-2xl px-2  hover:bg-white/80 cursor-pointer transition"
+            >
+              {user?.image ? (
+                <img
+                  src={user.image}
+                  alt="User Avatar"
+                  className="w-5 h-5 rounded-full"
+                />
+              ) : (
+                <User2Icon className="w-5 h-5 text-black" />
+              )}
+            </Link>
+          )}
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -133,27 +196,35 @@ const Navigation: FC = () => {
       {isMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="md:hidden absolute top-full -z-10 left-0 right-0 rounded-xl mx-auto bg-white backdrop-blur-2xl shadow-lg p-6"
+          className="md:hidden absolute top-full -z-10 left-0 right-0 rounded-xl mx-auto bg-zinc-200 backdrop-blur-2xl shadow-lg p-6"
         >
           <div className="flex flex-col items-center gap-6 text-lg font-medium">
-             <Link
-            href={"/collabs"}
-            className="text-gray-700 hover:underline cursor-pointer transition border-b pb-2 w-full "
-          >
-            Collabs
-          </Link>
             <Link
-              href={"/auth"}
-              className="text-gray-700 hover:underline cursor-pointer transition border-b pb-2 w-full "
+              href={"/collabs"}
+              className="text-gray-700 hover:bg-white/80 cursor-pointer transition border-b pb-2 w-full "
             >
-              Sign in
+              Collabs
             </Link>
+            {!loggedIn && (
+              <Link
+                href={"/auth"}
+                className="text-gray-700 hover:bg-white/80 cursor-pointer transition border-b pb-2 w-full "
+              >
+                Sign in
+              </Link>
+            )}
             <Link
               href={"/leaderboard"}
-              className="bg-yellow-500 text-white px-6 py-3 rounded-md hover:bg-yellow-600 cursor-pointer transition w-full"
+              className="text-gray-700 hover:bg-white/80 cursor-pointer transition border-b pb-2 w-full"
             >
               Leaderboard
             </Link>
+            {loggedIn && <button
+              onClick={handleLogout}
+              className={`w-full text-left bg-red-500 text-white hover:bg-red-600 cursor-pointer font-semibold p-3 rounded-lg transition-colors `}
+            >
+              Log Out
+            </button>}
           </div>
         </div>
       )}
