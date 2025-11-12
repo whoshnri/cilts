@@ -15,6 +15,7 @@ const Navigation: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [query, setQuery] = useState<string>("");
   const searchRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
@@ -85,10 +86,25 @@ const Navigation: FC = () => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      const query = e.currentTarget.value.trim();
+      if (query) {
+        window.location.href = `/collabs/search?query=${encodeURIComponent(
+          query
+        )}`;
+      }
+    }
+  };
+
+  const handleSearchClick = () => {
+    window.location.href = `/collabs/search?query=${encodeURIComponent(
+      (searchRef.current?.querySelector("input") as HTMLInputElement).value
+    )}`;
+  }
+
   return (
-    <nav
-      ref={navRef}
-    >
+    <nav ref={navRef}>
       <div className="max-w-6xl mx-auto py-3 px-4 sm:px-6 flex md:grid md:grid-cols-3 justify-between items-center ">
         {/* Left: Logo */}
         <Link href={"/"} className="flex items-center w-fit rounded-xl">
@@ -100,10 +116,13 @@ const Navigation: FC = () => {
           <div className="relative w-full max-w-sm">
             <input
               type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
               placeholder="Search collabs"
               className="border-gray-100 border text-sm outline-none placeholder:text-gray-500 w-full py-2 px-4 rounded-full focus:ring-1 focus:ring-yellow-50 focus:border-transparent backdrop-blur-2xl"
             />
-            <SearchIcon className="absolute h-5 w-5 text-gray-500 top-1/2 right-4 transform -translate-y-1/2" />
+            <SearchIcon onClick={handleSearchClick} className="absolute h-5 w-5 text-gray-500 top-1/2 right-4 transform -translate-y-1/2" />
           </div>
         </div>
 
@@ -158,6 +177,9 @@ const Navigation: FC = () => {
           >
             <input
               type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
               className={`bg-transparent backdrop-blur-2xl outline-none w-full h-full text-xs ${
                 isSearchOpen ? "block" : "hidden"
               }`}
@@ -167,7 +189,7 @@ const Navigation: FC = () => {
               onClick={() => setIsSearchOpen(!isSearchOpen)}
               className="absolute right-2 top-1/2 -translate-y-1/2"
             >
-              {isSearchOpen ? <X size={20} /> : <SearchIcon size={20} />}
+              {isSearchOpen ? <X onClick={() => setIsSearchOpen(false)} size={20} /> : <SearchIcon onClick={handleSearchClick} size={20} />}
             </button>
           </div>
           {loggedIn && (
@@ -219,12 +241,14 @@ const Navigation: FC = () => {
             >
               Leaderboard
             </Link>
-            {loggedIn && <button
-              onClick={handleLogout}
-              className={`w-full text-left bg-red-500 text-white hover:bg-red-600 cursor-pointer font-semibold p-3 rounded-lg transition-colors `}
-            >
-              Log Out
-            </button>}
+            {loggedIn && (
+              <button
+                onClick={handleLogout}
+                className={`w-full text-left bg-red-500 text-white hover:bg-red-600 cursor-pointer font-semibold p-3 rounded-lg transition-colors `}
+              >
+                Log Out
+              </button>
+            )}
           </div>
         </div>
       )}

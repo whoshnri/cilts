@@ -18,6 +18,7 @@ export const Tiro_Devanagari_MarathiFont = Tiro_Devanagari_Marathi({
 
 import { Collab, CollabTag } from "@prisma/client";
 import { fetchCollabs } from "../actions/collabsOps";
+import { toastError } from "@/lib/toast";
 
 export type CollabWithTags = Collab & { tags: CollabTag[] };
 
@@ -25,9 +26,9 @@ export default function GridPage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [collabs, setCollabs] = useState<CollabWithTags[]>([]);
   const [query, setQuery] = useState("");
+
   const handleSearch = () => {
-    if (!query.trim()) return;
-    console.log("Searching for:", query);
+    window.location.href = `/collabs/search?query=${encodeURIComponent(query)}`;
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -41,6 +42,7 @@ export default function GridPage() {
     const fetchData = async () => {
       const collabsData = await fetchCollabs();
       if (collabsData.data) setCollabs(collabsData.data);
+      else toastError("Failed to load collabs", "Network Error");
     };
     fetchData();
   }, []);
@@ -59,7 +61,7 @@ export default function GridPage() {
         </p>
 
         {/* search bar */}
-        <div className="mb-36 relative w-fit mx-auto z-20 px-4 flex flex-col items-center">
+        <div className="mb-36 relative w-fit mx-auto  px-4 flex flex-col items-center">
           <div className="relative w-full min-w-sm">
             <input
               type="text"
@@ -71,21 +73,14 @@ export default function GridPage() {
         w-full rounded-full border bg-gray-300 border-gray-400
         px-4 py-3 text-gray-800 text-sm
         focus:border-gray-600 focus:outline-none
-        shadow-sm transition z-20
+        shadow-sm transition z-10
       "
-            />
-
-            {/* SVG positioned below the input */}
-            <Image
-              src={hangover}
-              alt="Hangover"
-              className="absolute left-1/2 -translate-x-1/2 top-1.5 -z-50  w-40 h-40"
             />
           </div>
         </div>
 
         <PinterestGrid>
-          {collabs.map((item) => (
+          {collabs.map((item, idx) => (
             <GridItem key={item.id}>
               <div
                 onClick={() => setHoveredId(item.id)}
@@ -93,14 +88,21 @@ export default function GridPage() {
                 onMouseLeave={() => setHoveredId(null)}
                 className="relative h-full w-full overflow-hidden rounded"
               >
-                <img
-                  src={
-                    item.imageUrl ? item.imageUrl : "/default-collab-image.jpg"
-                  }
-                  alt={item.title}
-                  style={{ objectFit: "cover" }}
-                  className="transition-transform duration-300 ease-in-out hover:scale-105 h-full "
-                />
+                {item.imageUrl?.endsWith(".mp4") ? (
+                  <video
+                    src={item.imageUrl}
+                    autoPlay
+                    muted
+                    loop
+                    className="transition-transform duration-300 ease-in-out h-full aspect-video w-full object-cover mb-10 rounded-2xl"
+                  />
+                ) : (
+                  <img
+                    src={item.imageUrl || "/images/main.jpg"}
+                    alt={item.title}
+                    className="transition-transform max-h-96 duration-300 ease-in-out h-full w-full object-cover mb-10 rounded-2xl"
+                  />
+                )}
 
                 {/* Hover overlay */}
                 <AnimatePresence mode="wait">
@@ -149,7 +151,7 @@ export default function GridPage() {
 
                           <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
                             <Link
-                              href={`/collabs/${item.id}`}
+                              href={`/collabs/${item.slug}`}
                               className="group flex h-9 sm:h-10 px-3 items-center justify-center rounded-full border border-white/50"
                             >
                               <ArrowUpRight size={18} />
@@ -183,6 +185,7 @@ export default function GridPage() {
                   )}
                 </AnimatePresence>
               </div>
+              <p>{item.title}</p>
             </GridItem>
           ))}
         </PinterestGrid>

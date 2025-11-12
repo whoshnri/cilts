@@ -10,6 +10,7 @@ import Image from "next/image";
 import heroImage from "@/public/hero.svg";
 import Footer from "@/components/footer";
 import AddCollabButton from "@/components/newcollabhover";
+import { ToastContainer } from "react-toastify";
 
 export const Tiro_Devanagari_MarathiFont = Tiro_Devanagari_Marathi({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default function RootLayout({
           scrollbarWidth: "none",
         }}
       >
+        <ToastContainer autoClose={2000} hideProgressBar stacked />
         {/* Static Background Image */}
         <Image
           src={heroImage}

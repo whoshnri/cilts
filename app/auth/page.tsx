@@ -6,6 +6,7 @@ import { Eye, EyeOff } from "lucide-react";
 import crown from "@/public/crown.svg"
 import Image from "next/image";
 import { createUser, loginUser } from "../actions/authOps";
+import { toastError, toastSuccess } from "@/lib/toast";
 
 const AuthForm: FC = () => {
   const [formMode, setFormMode] = useState<"login" | "signup">("login");
@@ -34,16 +35,19 @@ const AuthForm: FC = () => {
       const res = await loginUser(isEmail ? login : undefined, !isEmail ? login : undefined, password);
       // get the session token from res if successful
       if (res.status === "success") {
-        alert("Login successful!");
+        toastSuccess("Login Successful", "You have logged in successfully.");
+        window.location.href = "/profile";
       } else {
-        alert(res.message);
+        toastError("Login Failed", res.message);
       }
     } else {
       const res = await createUser(email, userName, password);
       if (res.status === "success") {
+        toastSuccess("Account Created", "Your account has been created successfully. Please log in.");
         setFormMode("login");
+        return
       }
-      alert(res.message);
+      toastError("Signup Failed", res.message);
     }
   };
 
@@ -172,6 +176,7 @@ const AuthForm: FC = () => {
             </p>
           )}
         </div>
+
       </div>
     </section>
   );

@@ -5,6 +5,7 @@ import { FC, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Tag } from "@prisma/client";
 import { createCollab } from "@/app/actions/collabsOps";
+import { toastSuccess } from "@/lib/toast";
 
 // A list of the available tags from your schema enum
 const tagValues = Object.values(Tag);
@@ -76,7 +77,8 @@ const NewCollabForm: FC = () => {
       if (result.status === "error") {
         setServerError(result.message);
       } else {
-        router.push(`/collabs/${result.data.id}`);
+        toastSuccess("Success", "Your collaboration has been created successfully.");
+        router.push(`/collabs/${result.data.slug}`);
       }
     });
   };
@@ -182,7 +184,7 @@ const NewCollabForm: FC = () => {
         <div>
           <label className="block text-sm font-medium">Banner URL</label>
             <p className="text-xs text-gray-500 mt-1">
-            Optionally, add an image URL to visually represent your project.
+            Optionally, add an image or video URL to visually represent your project.
           </p>
           <input
             value={imageUrl}

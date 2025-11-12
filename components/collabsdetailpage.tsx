@@ -16,14 +16,19 @@ import { Collab, Comment, User, CollabTag } from "@prisma/client";
 import { Tiro_Devanagari_Marathi } from "next/font/google";
 import { Button } from "./ui/button";
 import SharePopup from "./share-popup";
-import { addComment, addView, bookmarkCollab, removeBookmarkCollab, upVoteCollab } from "@/app/actions/collabsOps";
+import {
+  addComment,
+  addView,
+  bookmarkCollab,
+  removeBookmarkCollab,
+  upVoteCollab,
+} from "@/app/actions/collabsOps";
 
 const TiroFont = Tiro_Devanagari_Marathi({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-manjari",
 });
-
 
 export type CompactCollab = {
   id: string;
@@ -67,7 +72,6 @@ export type CompactCollab = {
   })[];
 };
 
-
 interface CollabDetailsPageProps {
   initialCollabData: CompactCollab;
   currentUser: Omit<User, "password"> | null;
@@ -79,8 +83,14 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
 }) => {
   const [collab, setCollab] = useState(initialCollabData);
   const [newComment, setNewComment] = useState("");
-  const [isUpvoted, setIsUpvoted] = useState(initialCollabData.comments.some(comment => comment.authorId === currentUser?.id));
-  const [isBookmarked, setIsBookmarked] = useState(initialCollabData.bookmarkedBy.some(user => user.id === currentUser?.id));
+  const [isUpvoted, setIsUpvoted] = useState(
+    initialCollabData.comments.some(
+      (comment) => comment.authorId === currentUser?.id
+    )
+  );
+  const [isBookmarked, setIsBookmarked] = useState(
+    initialCollabData.bookmarkedBy.some((user) => user.id === currentUser?.id)
+  );
   const [showSharePopup, setShowSharePopup] = useState(false);
 
   // Dummy upvote handler
@@ -90,10 +100,10 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
       return;
     }
     if (isUpvoted) {
-      return
-    }else{
+      return;
+    } else {
       const res = await upVoteCollab(collab.id, currentUser.id);
-      if(res){
+      if (res) {
         setCollab((prev) => ({
           ...prev,
           upvotes: prev.upvotes + 1,
@@ -103,45 +113,47 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
     }
   };
 
-  async function markView(){
+  async function markView() {
     return await addView(collab.id);
-  } 
+  }
 
   useEffect(() => {
-    localStorage.getItem(`viewed_${collab.id}`) !== "true" ?  (async () => {
-      const res = await markView();
-      if(res){
-        localStorage.setItem(`viewed_${collab.id}`, "true");
-        setCollab((prev) => ({
-          ...prev,
-          views: prev.views + 1,
-        }));
-      }
-    })() : null;
-  },[]);
+    localStorage.getItem(`viewed_${collab.id}`) !== "true"
+      ? (async () => {
+          const res = await markView();
+          if (res) {
+            localStorage.setItem(`viewed_${collab.id}`, "true");
+            setCollab((prev) => ({
+              ...prev,
+              views: prev.views + 1,
+            }));
+          }
+        })()
+      : null;
+  }, []);
 
   // Dummy bookmark handler
-  const handleBookmark = async() => {
+  const handleBookmark = async () => {
     if (isBookmarked) {
       const res = await removeBookmarkCollab(collab.id, currentUser!.id);
-      if(res){
+      if (res) {
         setIsBookmarked(false);
       }
     } else {
       const res = await bookmarkCollab(collab.id, currentUser!.id);
-      if(res){
+      if (res) {
         setIsBookmarked(true);
-      }else{
+      } else {
         alert("Failed to bookmark. Please try again.");
       }
     }
   };
 
   // Dummy comment submission handler
-  const handleCommentSubmit = async(e: React.FormEvent) => {
+  const handleCommentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newComment.trim()) return;
-      if (!currentUser) {
+    if (!currentUser) {
       alert("You must be logged in to post a comment.");
       return;
     }
@@ -151,8 +163,8 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
       authorId: currentUser.id,
     };
 
-    try{
-      const res = await addComment(collab.id, comment)
+    try {
+      const res = await addComment(collab.id, comment);
       if (res.status === "success") {
         const addedComment = res.metadata;
         setCollab((prev) => ({
@@ -166,25 +178,30 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
     }
   };
 
-
-
   return (
     <section className=" py-24 sm:py-40">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           {/* Main Content (Left Column) */}
           <main className="lg:col-span-2">
-            {collab.imageUrl && (
-              <div className="relative mb-8 h-80 w-full overflow-hidden rounded-2xl shadow-lg">
-                <img 
-                  src={collab.imageUrl}
-                  alt={collab.title}
-                  style={{ objectFit: "cover" }}
-                  className="w-full h-full aspect-video"
-                />
-              </div>
+            {collab.imageUrl?.endsWith(".mp4") ? (
+              <video
+                src={collab.imageUrl}
+                autoPlay
+                muted
+                loop
+                className="transition-transform duration-300 ease-in-out h-full aspect-video max-h-96 w-full object-cover mb-10 rounded-2xl"
+              />
+            ) : (
+              <img
+                src={collab.imageUrl || "/images/main.jpg"}
+                alt={collab.title}
+                className="transition-transform max-h-96 duration-300 ease-in-out h-full w-full object-cover mb-10 rounded-2xl"
+              />
             )}
-            <h1 className={`${TiroFont.className} text-4xl font-bold text-gray-900 xs:text-5xl`}>
+            <h1
+              className={`${TiroFont.className} text-4xl font-bold text-gray-900 xs:text-5xl`}
+            >
               {collab.title}
             </h1>
             {collab.subtitle && (
@@ -220,7 +237,8 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
                   <div key={comment.id} className="flex items-start space-x-4">
                     <img
                       src={
-                        comment.author?.image || "/images/avatar-placeholder.png"
+                        comment.author?.image ||
+                        "/images/avatar-placeholder.png"
                       }
                       alt={comment.author?.username || "User Avatar"}
                       width={40}
@@ -300,7 +318,7 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
                 {collab.link && (
                   <Button
                     onClick={() => {
-                        setShowSharePopup(true);
+                      setShowSharePopup(true);
                     }}
                     rel="noopener noreferrer"
                     className="mt-3 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-black py-3 font-semibold text-white transition hover:bg-black"
@@ -327,17 +345,13 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
           </aside>
         </div>
       </div>
-          <SharePopup
-            collab={collab}
-            isOpen={showSharePopup}
-            onClose={() => setShowSharePopup(false)}
-          />
-
+      <SharePopup
+        collab={collab}
+        isOpen={showSharePopup}
+        onClose={() => setShowSharePopup(false)}
+      />
     </section>
   );
 };
 
 export default CollabDetailsPage;
-
-
-

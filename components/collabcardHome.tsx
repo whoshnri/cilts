@@ -16,11 +16,19 @@ interface ProjectCardProps {
 const ProjectCard: FC<ProjectCardProps> = ({ project, hoveredItemId }) => {
   return (
     <div className="relative h-96 w-full shrink-0 overflow-hidden rounded-3xl">
-      <img
+      {project.imageUrl?.endsWith(".mp4")?
+      <video
+        src={project.imageUrl}
+        autoPlay
+        muted
+        loop
+        className="transition-transform duration-300 ease-in-out h-full w-full object-cover"
+      />
+      : <img
         src={project.imageUrl || "/images/main.jpg"}
         alt={project.title}
         className="transition-transform duration-300 ease-in-out h-full w-full object-cover"
-      />
+      />}
       {/* Render overlay and text only if the card is active */}
       {project.id === hoveredItemId && (
         <AnimatePresence mode="wait">
@@ -50,7 +58,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, hoveredItemId }) => {
             
             {/* --- MODIFIED LINK ELEMENT --- */}
             <Link
-              href={`collabs/${project.id}`}
+              href={`collabs/${project.slug}`}
               className="group flex h-10 px-3 items-center justify-center rounded-full border border-white/50"
               
             >

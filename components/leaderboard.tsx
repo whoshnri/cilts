@@ -5,6 +5,7 @@ import { FC, useState, useEffect, useMemo } from "react";
 import { RefreshCw } from "lucide-react";
 import { Tiro_Devanagari_Marathi } from "next/font/google";
 import Link from "next/link";
+import { LeaderBoard } from "@/app/leaderboard/page";
 
 const TiroFont = Tiro_Devanagari_Marathi({
   subsets: ["latin"],
@@ -28,37 +29,27 @@ interface RankedLeaderboardItem extends LeaderboardItem {
   rank: number;
 }
 
-const generateInitialData = (): LeaderboardItem[] => {
-  const titles = [
-    "AI Music Videos",
-    "Sustainable Fashion Line",
-    "Indie Game Devlog",
-    "Community Garden App",
-    "Sci-Fi Short Film",
-    "Language Learning AI",
-    "3D Printed Prosthetics",
-    "Recipe Sharing Platform",
-    "VR Museum Tour",
-    "Open Source Text Editor",
-  ];
-  return titles.map((title, i) => ({
-    id: `collab_${i + 1}`,
-    title,
-    slug: title.toLowerCase().replace(/\s+/g, "-"),
-    authorName: `Creator${i + 1}`,
-    upvotes: Math.floor(Math.random() * 2000),
-    comments: Math.floor(Math.random() * 500),
-    views: Math.floor(Math.random() * 50000),
-  }));
-};
+interface LeaderboardPageProps {
+  leaderboard: LeaderBoard;
+}
 
-const LeaderboardPage: FC = () => {
+const LeaderboardPage: FC<LeaderboardPageProps> = ({ leaderboard }) => {
   const [collabs, setCollabs] = useState<LeaderboardItem[]>([]);
   const [sortBy, setSortBy] = useState<SortKey>("upvotes");
 
   useEffect(() => {
-    setCollabs(generateInitialData());
-  }, []);
+    // Transform leaderboard data to match LeaderboardItem structure
+    const transformedData = leaderboard.map((item) => ({  
+      id: item.collab.id,
+      title: item.collab.title,
+      slug: item.collab.slug,
+      authorName: item.collab.author ? item.collab.author.username : "Unknown",
+      upvotes: item.collab.upvotes,
+      comments: item.commentsRank,
+      views: item.collab.views,
+    }));
+    setCollabs(transformedData);
+  }, [leaderboard]);
 
   const rankedList = useMemo((): RankedLeaderboardItem[] => {
     const sortedCollabs = [...collabs].sort((a, b) => b[sortBy] - a[sortBy]);
@@ -68,9 +59,9 @@ const LeaderboardPage: FC = () => {
     }));
   }, [collabs, sortBy]);
 
-  const refreshLeaderboard = () => {
-    setCollabs(generateInitialData());
-  };
+  const refreshLeaderboard = async () => {
+    window.location.reload();
+  }
 
   return (
     <section className="py-24 sm:py-32 min-h-screen">
@@ -149,7 +140,7 @@ const LeaderboardPage: FC = () => {
               </tr>
             </thead>
             <tbody className="bg-white">
-              {rankedList.map((item) => (
+              {! (rankedList.length === 0) ? rankedList.map((item) => (
                 <tr
                   key={item.id}
                   className="block sm:table-row border-b sm:border-b-0 last:border-b-0 even:bg-gray-50/50 sm:even:bg-white sm:hover:bg-gray-50"
@@ -162,7 +153,7 @@ const LeaderboardPage: FC = () => {
 
                   <td className="block sm:table-cell w-full sm:w-32 px-4 pb-3 pt-1 sm:px-6 sm:py-4 whitespace-nowrap align-middle">
                         <Link
-                          href={`/collab/${item.slug}`}
+                          href={`/collabs/${item.slug}`}
                           className="font-semibold text-gray-800 hover:text-yellow-700"
                         >
                           {item.title}
@@ -189,7 +180,7 @@ const LeaderboardPage: FC = () => {
                         Comments
                       </span>
                       <span className="text-sm text-gray-800">
-                        {item.comments.toLocaleString()}
+                        {(item.comments).toLocaleString()}
                       </span>
                     </div>
                   </td>
@@ -205,7 +196,13 @@ const LeaderboardPage: FC = () => {
                     </div>
                   </td>
                 </tr>
-              ))}
+              )) : (
+                <tr>
+                  <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
+                    No data available.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

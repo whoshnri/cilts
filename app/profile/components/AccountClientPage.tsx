@@ -22,6 +22,7 @@ import { logoutUser } from "@/app/actions/authOps";
 import { CompactCollab } from "@/components/collabsdetailpage";
 import { UserCollabs } from "../page";
 import { Tag } from "@prisma/client";
+import { toastError, toastSuccess } from "@/lib/toast";
 
 export const Tiro_Devanagari_MarathiFont = Tiro_Devanagari_Marathi({
   subsets: ["latin"],
@@ -118,8 +119,9 @@ const AccountClientPage: FC<AccountClientPageProps> = ({
   const handleLogout = async () => {
     const res = await logoutUser();
     if (res.status !== "success") {
-      alert("Logout failed. Please try again.");
+      toastError("Logout Failed", "Unable to log out. Please try again.");
     } else {
+      toastSuccess("Logged Out", "You have been logged out successfully.");
       window.location.href = "/";
     }
   };
@@ -144,12 +146,12 @@ const AccountClientPage: FC<AccountClientPageProps> = ({
 
         <div className="flex flex-col md:flex-row gap-8">
           <aside className="md:w-1/4">
-            <nav className="flex md:flex-col gap-2 p-2 rounded-xl bg-gray-100">
+            <nav className="flex md:flex-col gap-2 p-2 rounded-xl bg-white">
               <button
                 onClick={() => setActiveTab("profile")}
                 className={`w-full text-left font-semibold p-3 rounded-lg transition-colors ${
                   activeTab === "profile"
-                    ? "bg-white shadow-sm text-black"
+                    ? "bg-gray-100 shadow-sm text-black"
                     : "text-gray-600 hover:bg-gray-200"
                 }`}
               >
@@ -159,7 +161,7 @@ const AccountClientPage: FC<AccountClientPageProps> = ({
                 onClick={() => setActiveTab("collabs")}
                 className={`w-full text-left font-semibold p-3 rounded-lg transition-colors ${
                   activeTab === "collabs"
-                    ? "bg-white shadow-sm text-black"
+                    ? "bg-gray-100 shadow-sm text-black"
                     : "text-gray-600 hover:bg-gray-200"
                 }`}
               >
@@ -167,7 +169,7 @@ const AccountClientPage: FC<AccountClientPageProps> = ({
               </button>
               <button
                 onClick={handleLogout}
-                className={`w-full hidden sm:block text-left bg-red-500 text-white hover:bg-red-600 cursor-pointer font-semibold p-3 rounded-lg transition-colors `}
+                className={`w-full hidden sm:block text-left bg-red-500 text-white hover:bg-red-600 cursor-pointer font-semibold p-2 rounded-lg transition-colors `}
               >
                 Log Out
               </button>
@@ -345,9 +347,11 @@ const EditCollabModal: FC<{
     const res = await updateCollab(collab.id, formData);
     if (res.status === "success") {
       setIsOpen(false);
+      toastSuccess("Collaboration Updated", "Your collaboration has been updated successfully.");
       window.location.reload();
     } else {
       setIsSaving(false);
+      toastError("Update Failed", res.message);
       return;
     }
     setIsSaving(false);
@@ -499,13 +503,21 @@ const EditCollabModal: FC<{
           </div>
         </div>
         <div className="hidden md:w-full md:block border p-2 rounded-lg max-w-sm min-w-sm">
-          {formData.imageUrl && (
-            <img
-              src={formData.imageUrl}
-              alt="Collab Image Preview"
-              className=" h-full w-full object-cover rounded-lg border"
-            />
-          )}
+          {formData.imageUrl?.endsWith(".mp4") ? (
+              <video
+                src={formData.imageUrl}
+                autoPlay
+                muted
+                loop
+                className="transition-transform duration-300 ease-in-out h-full aspect-video w-full object-cover mb-10 rounded-2xl"
+              />
+            ) : (
+              <img
+                src={formData.imageUrl || "/images/main.jpg"}
+                alt={formData.title}
+                className="transition-transform max-h-96 duration-300 ease-in-out h-full w-full object-cover mb-10 rounded-2xl"
+              />
+            )}
         </div>
       </div>
     </div>
@@ -522,9 +534,10 @@ const ConfirmDeleteModal: FC<{
   async function onConfirm() {
     const res = await deleteCollab(name);
     if (res.status === "success") {
+      toastSuccess("Collaboration Deleted", "Your collaboration has been deleted successfully.");
       window.location.reload();
     } else {
-      alert("Failed to delete collaboration. Please try again.");
+      toastError("Delete Failed", res.message);
     }
   }
   return (

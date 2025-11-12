@@ -2,12 +2,12 @@ import { getCurrentUser } from "@/app/actions/authOps";
 import { fetchCollabById } from "@/app/actions/collabsOps";
 import CollabDetailsPage from "@/components/collabsdetailpage";
 
-export default async function Page(props: { params: Promise<{ collabId: string }> }) {
-  const { collabId } = await props.params; 
+export default async function Page(props: { params: Promise<{ collabSlug: string }> }) {
+  const { collabSlug } = await props.params; 
 
-  console.log("Fetching data for collabId:", collabId);
+  console.log("Fetching data for collabSlug:", collabSlug);
 
-  const collabData = await fetchCollabById(collabId);
+  const collabData = await fetchCollabById(collabSlug);
   const currentUser = await getCurrentUser();
 
   if (!collabData || collabData.status === "error" || !collabData.data) {

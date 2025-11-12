@@ -101,7 +101,7 @@ export const createCollab = async (formData: FormData) => {
     return {
       status: "success" as const,
       message: "Collaboration created!",
-      data: { id: newCollab.id },
+      data: { slug: newCollab.slug },
     };
   } catch (error) {
     console.error("Create collab error:", error);
@@ -231,10 +231,10 @@ export async function fetchFeaturedCollabs() {
   } 
 }
 
-export async function fetchCollabById(id: string) {
+export async function fetchCollabById(slug: string) {
   try {
     const collabData = await prisma.collab.findUnique({
-      where: { id },
+      where: { slug },
       include: {
         author: true,
         tags: true,
