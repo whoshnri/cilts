@@ -372,15 +372,15 @@ const EditCollabModal: FC<{
 
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-xs flex items-center justify-center z-100">
-      <div className="max-w-2xl flex justify-center gap-1">
-        <div className="bg-white rounded-lg p-6 max-w-sm md:min-w-sm w-[80vw] space-y-5">
+      <div className="max-w-2xl flex justify-center gap-1 h-[90vh]">
+        <div className="bg-white rounded-lg p-6 max-w-sm md:min-w-sm w-[90vw] space-y-5 flex flex-col">
           <div className="">
             <h2 className="text-lg font-semibold">Edit Collaboration</h2>
             <p className="text-sm">"{collab.title}"</p>
           </div>
           {/* Form fields for editing would go here */}
           <div
-            className="overflow-y-auto max-h-[50vh]"
+            className="overflow-y-auto max-h-[60vh] space-y-4"
             style={{
               scrollbarWidth: "none",
             }}
@@ -487,7 +487,7 @@ const EditCollabModal: FC<{
             </div>
           </div>
 
-          <div className="flex items-center w-full gap-3 justify-end">
+          <div className="flex items-center mt-auto w-full gap-3 justify-end">
             <button
               onClick={handleCancel}
               className="px-4 py-2 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-lg"
@@ -515,7 +515,7 @@ const EditCollabModal: FC<{
               <img
                 src={formData.imageUrl || "/images/main.jpg"}
                 alt={formData.title}
-                className="transition-transform max-h-96 duration-300 ease-in-out h-full w-full object-cover mb-10 rounded-2xl"
+                className="transition-transform  duration-300 ease-in-out h-full w-full object-cover mb-10 rounded-2xl"
               />
             )}
         </div>

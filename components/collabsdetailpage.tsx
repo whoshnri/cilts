@@ -54,6 +54,7 @@ export type CompactCollab = {
     image: string | null;
     createdAt: Date;
   } | null;
+  upVotedBy: User[];
   comments: ({
     id: string;
     createdAt: Date;
@@ -84,9 +85,7 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
   const [collab, setCollab] = useState(initialCollabData);
   const [newComment, setNewComment] = useState("");
   const [isUpvoted, setIsUpvoted] = useState(
-    initialCollabData.comments.some(
-      (comment) => comment.authorId === currentUser?.id
-    )
+    initialCollabData.upVotedBy?.some((user) => user.id === currentUser?.id)
   );
   const [isBookmarked, setIsBookmarked] = useState(
     initialCollabData.bookmarkedBy.some((user) => user.id === currentUser?.id)
@@ -177,6 +176,14 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
       console.error("Error adding comment:", error);
     }
   };
+  
+  function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+    // if control + enter is pressed
+    if (e.key === "Enter" && e.ctrlKey) {
+      e.preventDefault();
+      handleCommentSubmit(e as unknown as React.FormEvent);
+    }
+  }
 
   return (
     <section className=" py-24 sm:py-40">
@@ -196,7 +203,7 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
               <img
                 src={collab.imageUrl || "/images/main.jpg"}
                 alt={collab.title}
-                className="transition-transform max-h-96 duration-300 ease-in-out h-full w-full object-cover mb-10 rounded-2xl"
+                className="transition-transform max-h-96 duration-300 ease-in-out h-full w-full object-cover mb-10 aspect-auto rounded-2xl"
               />
             )}
             <h1
@@ -219,6 +226,7 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
               <form onSubmit={handleCommentSubmit} className="mt-6">
                 <textarea
                   value={newComment}
+                  onKeyDown={handleKeyDown}
                   onChange={(e) => setNewComment(e.target.value)}
                   placeholder="Share your thoughts..."
                   className="w-full rounded-lg border-gray-800 p-4 shadow-xs focus:border-gray-500 focus:ring-black"
@@ -243,7 +251,7 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
                       alt={comment.author?.username || "User Avatar"}
                       width={40}
                       height={40}
-                      className="rounded-full"
+                      className="rounded-full aspect-square object-cover"
                     />
                     <div>
                       <p className="font-semibold text-gray-800">
@@ -272,7 +280,7 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
                     alt={collab.author?.username || "User Avatar"}
                     width={48}
                     height={48}
-                    className="rounded-full"
+                    className="rounded-full aspect-square object-cover"
                   />
                   <div>
                     <p className="font-semibold text-gray-800">
@@ -294,6 +302,7 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
                 <div className="mt-6 grid grid-cols-2 gap-3">
                   <button
                     onClick={handleUpvote}
+                    disabled={isUpvoted}
                     className={`flex w-full items-center justify-center gap-2 rounded-full border-2 py-3 font-bold transition ${
                       isUpvoted
                         ? "border-black bg-black text-white"
@@ -334,9 +343,9 @@ const CollabDetailsPage: FC<CollabDetailsPageProps> = ({
                   {collab.tags.map((tag) => (
                     <span
                       key={tag.name}
-                      className="capitalize rounded-full bg-gray-100/10 backdrop-blur-2xl px-3 py-1 text-xs font-medium text-gray-700"
+                      className="capitalize rounded-full bg-gray-100/10 backdrop-blur-2xl px-3 py-2 text-sm font-medium text-gray-700"
                     >
-                      {tag.name.toLowerCase()}
+                      #{tag.name.toLowerCase()}
                     </span>
                   ))}
                 </div>

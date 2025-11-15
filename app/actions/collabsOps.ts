@@ -5,10 +5,8 @@ import { revalidatePath } from "next/cache";
 import prisma from "@/prisma/prisma"; // Adjust path if needed
 import { getCurrentUser } from "./authOps"; // Adjust path if needed
 import { randomBytes } from "crypto";
-import { Comment, Tag } from "@prisma/client";
-import { metadata } from "../layout";
-import { CollabWithTags } from "../collabs/page";
-import { use } from "react";
+import { $Enums, Comment, Prisma, Tag,  } from "@prisma/client";
+
 
 // Helper to generate a unique slug
 const generateSlug = async (title: string): Promise<string> => {
@@ -38,6 +36,8 @@ export const createCollab = async (formData: FormData) => {
   const imageUrl = formData.get("imageUrl") as string;
   const link = formData.get("link") as string;
   const tags = formData.getAll("tags") as Tag[];
+  const connectLink = formData.get("connectLink") as string;
+  const type = formData.get("userType") as $Enums.UserTypes;
 
   if (!title || typeof title !== "string" || title.trim().length < 5) {
     return {
@@ -82,6 +82,8 @@ export const createCollab = async (formData: FormData) => {
       data: {
         title: title.trim(),
         slug,
+        type,
+        connectLink: connectLink ? connectLink.trim() : currentUser.email!,
         subtitle: subtitle?.trim() || null,
         description: description.trim(),
         imageUrl: imageUrl?.trim() || null,
@@ -183,11 +185,30 @@ export async function addComment(
   }
 }
 
+const collabForCard = Prisma.validator<Prisma.CollabDefaultArgs>()({
+  select: {
+    id: true,
+    slug: true,
+    title: true,
+    imageUrl: true,
+    type: true,
+    authorId: true,
+    upvotes: true,
+    views: true,
+    author: { select: { username: true, image: true } },
+    tags: { select: { name: true } }, // Correctly select just the name from the relation
+  }
+});
+
+
+export type CollabForCard = Prisma.CollabGetPayload<typeof collabForCard>;
+
 export async function fetchCollabs() {
   try {
-    const collabs: CollabWithTags[] = await prisma.collab.findMany({
+    const collabs: CollabForCard[] = await prisma.collab.findMany({
       include: {
-        tags: true,
+        tags: {select: { name: true } },
+        author: { select: { username: true, image: true } },
       },
     });
     return {
@@ -206,12 +227,13 @@ export async function fetchCollabs() {
 
 export async function fetchFeaturedCollabs() {
   try {
-    const collabs: CollabWithTags[] = await prisma.collab.findMany({
+    const collabs = await prisma.collab.findMany({
       where: { AND : {
         isFeatured: true,
       }},
       include: {
-        tags: true,
+        tags: { select: { name: true } },
+        author: { select: { username: true, image: true } },
       },
       orderBy: {
         createdAt: "desc",
@@ -239,9 +261,11 @@ export async function fetchCollabById(slug: string) {
         author: true,
         tags: true,
         bookmarkedBy: true,
+        upVotedBy: true,
         comments: {
           include: {
             author: true,
+            
           },
           orderBy: {
             createdAt: "desc",

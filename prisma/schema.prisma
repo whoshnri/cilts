@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql" // postgresql / sqlite
+  provider = "sqlite" // postgresql / sqlite
   url      = env("DATABASE_URL")
 }
 
@@ -36,12 +36,14 @@ model Collab {
   title         String
   subtitle      String?
   description   String?
+  type        UserTypes
   imageUrl      String?
   link          String?
   tags          CollabTag[]
   upvotes       Int           @default(0)
   views         Int           @default(0)
   comments      Comment[]
+  connectLink   String
   authorId      String?
   isFeatured    Boolean?
   author        User?         @relation("UserCollabs", fields: [authorId], references: [id])
@@ -79,4 +81,12 @@ enum Tag {
   MUSIC
   WRITING
   BUSINESS
+}
+
+
+enum UserTypes {
+  Individual
+  Brand
+  Creator
+  Investor
 }

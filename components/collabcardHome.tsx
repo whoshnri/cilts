@@ -3,10 +3,33 @@ import { ArrowUpRight } from "lucide-react";
 import { FC } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Collab, CollabTag } from "@prisma/client";
-import { CollabWithTags } from "@/app/collabs/page";
+import { $Enums, Collab, CollabTag } from "@prisma/client";
 
-export type Project = CollabWithTags;
+export type Project = {
+    tags: {
+        name: $Enums.Tag;
+    }[];
+    author: {
+        username: string;
+        image: string | null;
+    } | null;
+} & {
+    link: string | null;
+    id: string;
+    slug: string;
+    title: string;
+    subtitle: string | null;
+    description: string | null;
+    type: $Enums.UserTypes;
+    imageUrl: string | null;
+    upvotes: number;
+    views: number;
+    connectLink: string;
+    authorId: string | null;
+    isFeatured: boolean | null;
+    createdAt: Date;
+    updatedAt: Date;
+}
 
 interface ProjectCardProps {
   project: Project;
@@ -48,7 +71,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, hoveredItemId }) => {
             <div className="flex flex-col gap-2">
               {project.tags.map((tag) => (
                 <span
-                  key={tag.id}
+                  key={tag.name}
                   className="rounded-full bg-white/20 px-3 py-1 text-xs"
                 >
                   {tag.name}

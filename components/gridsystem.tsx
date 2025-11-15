@@ -1,4 +1,4 @@
-import { FC, ReactNode, useMemo } from "react";
+import { FC, ReactNode } from "react";
 
 interface PinterestGridProps {
   children: ReactNode;
@@ -10,12 +10,10 @@ const PinterestGrid: FC<PinterestGridProps> = ({ children }) => {
       className="
         px-4
         grid
-        grid-cols-2
+        grid-cols-1
         lg:grid-cols-3
-        gap-2
-        md:gap-4
-        md:grid-auto-rows-[15px]
-        grid-auto-rows-[8px]
+        gap-4
+        grid-auto-rows-[10px] 
       "
     >
       {children}
@@ -23,24 +21,19 @@ const PinterestGrid: FC<PinterestGridProps> = ({ children }) => {
   );
 };
 
-export default PinterestGrid;
-
 interface GridItemProps {
   children: ReactNode;
+  span: number;
 }
 
-const GridItem: FC<GridItemProps> = ({ children }) => {
-  // Only generate once — stays stable until the component unmounts
-  const randomSpan = useMemo(() => Math.floor(Math.random() * 11) + 20, []);
-
+const GridItem: FC<GridItemProps> = ({ children, span }) => {
   return (
-    <div
-      className="overflow-hidden rounded-xl bg-gray-200"
-      style={{ gridRowEnd: `span ${randomSpan}` }}
-    >
+    <div className={`overflow-hidden rounded-xl sm:row-span-[${span}]`}>
       {children}
     </div>
   );
 };
 
 export { GridItem };
+
+export default PinterestGrid;
