@@ -81,9 +81,9 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, hoveredItemId }) => {
             
             {/* --- MODIFIED LINK ELEMENT --- */}
             <Link
-              href={`collabs/${project.slug}`}
+              href={`/library/${project.slug}`}
               className="group flex h-10 px-3 items-center justify-center rounded-full border border-white/50"
-              
+                
             >
               {/* Icon */}
               <div className="">

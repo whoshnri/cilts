@@ -70,7 +70,7 @@ const NewCollabForm: FC = () => {
         toastError("Submission Failed", result.message);
       } else {
         toastSuccess("Success!", "Your collab has been submitted.");
-        router.push(`/collabs/${result.data.slug}`);
+        router.push(`/library/${result.data.slug}`);
       }
     });
   };

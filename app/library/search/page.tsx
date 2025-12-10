@@ -150,7 +150,7 @@ const CollabMedia = ({ src, alt }: { src: string | null; alt: string }) => {
 
 const CollabCard = ({ collab }: { collab: CollabWithDetails }) => {
   return (
-    <Link href={`/collab/${collab.slug}`} className="group block">
+    <Link href={`/library/${collab.slug}`} className="group block">
       <div className="flex flex-col h-full bg-white border rounded-xl overflow-hidden shadow-sm transition-all hover:shadow-2xl hover:-translate-y-1">
         <div className="relative aspect-video">
           <CollabMedia src={collab.imageUrl} alt={collab.title} />

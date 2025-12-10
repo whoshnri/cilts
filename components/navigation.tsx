@@ -90,7 +90,7 @@ const Navigation: FC = () => {
     if (e.key === "Enter") {
       const query = e.currentTarget.value.trim();
       if (query) {
-        window.location.href = `/collabs/search?query=${encodeURIComponent(
+        window.location.href = `/library/search?query=${encodeURIComponent(
           query
         )}`;
       }
@@ -98,7 +98,7 @@ const Navigation: FC = () => {
   };
 
   const handleSearchClick = () => {
-    window.location.href = `/collabs/search?query=${encodeURIComponent(
+    window.location.href = `/library/search?query=${encodeURIComponent(
       (searchRef.current?.querySelector("input") as HTMLInputElement).value
     )}`;
   }
@@ -119,7 +119,7 @@ const Navigation: FC = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Search collabs"
+              placeholder="Search library"
               className="border-gray-100 border text-sm outline-none placeholder:text-gray-500 w-full py-2 px-4 rounded-full focus:ring-1 focus:ring-yellow-50 focus:border-transparent backdrop-blur-2xl"
             />
             <SearchIcon onClick={handleSearchClick} className="absolute h-5 w-5 text-gray-500 top-1/2 right-4 transform -translate-y-1/2" />
@@ -129,10 +129,10 @@ const Navigation: FC = () => {
         {/* Right: Auth buttons (Desktop) */}
         <div className="hidden md:flex items-center gap-4 text-sm font-medium md:justify-self-end-safe">
           <Link
-            href={"/collabs"}
+            href={"/library"}
             className="text-gray-700 bg-transparent rounded-xl p-2 backdrop-blur-2xl px-2  hover:bg-white/80 cursor-pointer transition"
           >
-            Collabs
+            Library
           </Link>
           {!loggedIn && (
             <Link
@@ -222,10 +222,10 @@ const Navigation: FC = () => {
         >
           <div className="flex flex-col items-center gap-6 text-lg font-medium">
             <Link
-              href={"/collabs"}
+              href={"/library"}
               className="text-gray-700 hover:bg-white/80 cursor-pointer transition border-b pb-2 w-full "
             >
-              Collabs
+              Library
             </Link>
             {!loggedIn && (
               <Link

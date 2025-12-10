@@ -62,7 +62,7 @@ const CollabCard: FC<CollabCardProps> = ({ item }) => {
 
   return (
     // The main link wrapper
-    <Link href={`/collabs/${item.slug}`}>
+    <Link href={`/library/${item.slug}`}>
       <div className="group flex flex-col h-full overflow-hidden rounded-xl">
         {/* --- Image Section with Simplified Hover Effect --- */}
         <div className="relative w-full aspect-4/5 overflow-hidden">

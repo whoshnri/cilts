@@ -1,5 +1,5 @@
-    // app/collab/new/page.tsx
-import NewCollabForm from "@/app/collabs/components/NewCollab";
+// app/collab/new/page.tsx
+import NewCollabForm from "@/app/library/components/NewCollab";
 import { getCurrentUser } from "@/app/actions/authOps";
 import { redirect } from "next/navigation";
 import { Tiro_Devanagari_Marathi } from "next/font/google";
@@ -16,7 +16,7 @@ export default async function NewCollabPage() {
   if (!user) {
     redirect("/auth");
   }
-  
+
   return (
     <section className="py-24 sm:py-32">
       <div className="container mx-auto max-w-4xl px-4">

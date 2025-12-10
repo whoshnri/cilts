@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function AddCollabButton() {
   return (
-    <Link href="/collabs/new">
+    <Link href="/library/new">
       <motion.div
         whileHover={{ scale: 1.1, rotate: 90 }}
         whileTap={{ scale: 0.95 }}

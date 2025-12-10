@@ -1,20 +1,37 @@
 // components/Footer.tsx
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Twitter, Github, Linkedin } from "lucide-react";
-import { toastSuccess} from '@/lib/toast'
+import { toastSuccess, toastError } from '@/lib/toast'
+import { subscribeToNewsletter } from "@/app/actions/newsletterOps";
 import logo from "@/public/logo.svg";
 
 const Footer: FC = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const email = event.currentTarget.email.value;
-    if(email) {
-      toastSuccess("Subscribed!", `Thank you, ${email} has been added to our mailing list.`);
-      event.currentTarget.reset(); // Clear the form
+    const form = event.currentTarget;
+    const email = form.email.value;
+
+    if (!email) return;
+
+    setIsLoading(true);
+    try {
+      const result = await subscribeToNewsletter(email);
+      if (result.success) {
+        toastSuccess("Subscribed!", result.message);
+        form.reset();
+      } else {
+        toastError("Subscription failed", result.message);
+      }
+    } catch (error) {
+      toastError("Error", "Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -22,7 +39,7 @@ const Footer: FC = () => {
     <footer className="bg-white text-gray-800 rounded-t-3xl">
       <div className="container mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-16 md:grid-cols-12">
-          
+
           {/* Column 1: Logo, Mission, and Socials */}
           <div className="md:col-span-12 lg:col-span-4">
             <Link href="/" className="mb-6 inline-block">
@@ -63,15 +80,15 @@ const Footer: FC = () => {
 
         {/* --- NEW: Disclaimer & IP Notice Section --- */}
         <div className="mt-16 border-t pt-10">
-            <h2 className="font-semibold text-base text-gray-800 mb-4">Disclaimer & IP Notice</h2>
-            <div className="text-xs text-gray-500 space-y-3">
-                <p>
-                    All concepts featured on Collabs I’d Love To See (CILTS) are community-generated and intended for creative inspiration only. Unless stated otherwise, CILTS has no direct affiliation with the brands, artists, or entities mentioned. All trademarks, visuals, and names remain the exclusive property of their rightful owners.
-                </p>
-                <p>
-                    By submitting an idea, contributors retain full ownership of their IP, grant CILTS a non-exclusive license to display the concept, and may request removal at any time via <Link href="mailto:legal@cilts.co" className="font-semibold text-gray-600 hover:text-black hover:underline">legal@cilts.co</Link>. CILTS does not commercialize user ideas without explicit consent. Any infringement claims will be reviewed within 7 working days in accordance with global IP protection laws.
-                </p>
-            </div>
+          <h2 className="font-semibold text-base text-gray-800 mb-4">Disclaimer & IP Notice</h2>
+          <div className="text-xs text-gray-500 space-y-3">
+            <p>
+              All concepts featured on Collabs I’d Love To See (CILTS) are community-generated and intended for creative inspiration only. Unless stated otherwise, CILTS has no direct affiliation with the brands, artists, or entities mentioned. All trademarks, visuals, and names remain the exclusive property of their rightful owners.
+            </p>
+            <p>
+              By submitting an idea, contributors retain full ownership of their IP, grant CILTS a non-exclusive license to display the concept, and may request removal at any time via <Link href="mailto:legal@cilts.co" className="font-semibold text-gray-600 hover:text-black hover:underline">legal@cilts.co</Link>. CILTS does not commercialize user ideas without explicit consent. Any infringement claims will be reviewed within 7 working days in accordance with global IP protection laws.
+            </p>
+          </div>
         </div>
 
 

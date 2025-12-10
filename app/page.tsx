@@ -30,13 +30,13 @@ export default function Home() {
           </p>
         <div className="flex items-center gap-2 justify-center mt-8  ">
           <Link
-            href={"/collabs"}
+            href={"/library"}
             className="text-xs sm:text-sm rounded-lg text-black bg-white group cursor-pointer w-fit px-2 font-semibold py-3.5  hover:bg-white/80 hover:text-black/80"
           >
             Explore Collabs
           </Link>
           <Link
-            href={"/collabs/new"}
+            href={"/library/new"}
             className="text-xs sm:text-sm rounded-lg bg-black text-white group cursor-pointer w-fit px-2 font-semibold py-3.5 hover:bg-black/80 hover:text-white"
           >
             Create a Pitch

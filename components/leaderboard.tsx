@@ -153,7 +153,7 @@ const LeaderboardPage: FC<LeaderboardPageProps> = ({ leaderboard }) => {
 
                   <td className="block sm:table-cell w-full sm:w-32 px-4 pb-3 pt-1 sm:px-6 sm:py-4 whitespace-nowrap align-middle">
                         <Link
-                          href={`/collabs/${item.slug}`}
+                          href={`/library/${item.slug}`}
                           className="font-semibold text-gray-800 hover:text-yellow-700"
                         >
                           {item.title}
