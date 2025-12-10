@@ -150,6 +150,7 @@ const Navigation: FC = () => {
           </Link>
           {/* user name if logged in */}
           {loggedIn && (
+            <div>
             <Link
               href={"/profile"}
               className={`text-gray-700 bg-transparent rounded-xl w-10 h-10 backdrop-blur-2xl ${
@@ -165,7 +166,14 @@ const Navigation: FC = () => {
               ) : (
                 <User2Icon className="w-full h-full text-black" />
               )}
-            </Link>
+            </Link> 
+            <Link
+            href={"/library/new"}
+            className="bg-black backdrop-blur-2xl text-white px-5 py-2 rounded-md hover:bg-black/80 cursor-pointer transition"
+          >
+            Lab
+          </Link>
+          </div>
           )}
         </div>
 

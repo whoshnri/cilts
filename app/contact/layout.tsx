@@ -1,9 +1,20 @@
-import React from "react";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Contact",
+export const metadata: Metadata = {
+  title: "Contact Us",
   description:
-    "Contact page layout — reach out with questions, feedback, or partnership inquiries.",
+    "Have a question, a proposal, or partnership inquiry? Get in touch with the CILTS team. We'd love to hear from you.",
+  openGraph: {
+    title: "Contact Us | CILTS",
+    description:
+      "Get in touch with the CILTS team for questions, proposals, or partnerships.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Contact Us | CILTS",
+    description:
+      "Get in touch with the CILTS team for questions, proposals, or partnerships.",
+  },
 };
 
 type Props = {
@@ -13,3 +24,4 @@ type Props = {
 export default function ContactLayout({ children }: Props) {
   return <>{children}</>;
 }
+

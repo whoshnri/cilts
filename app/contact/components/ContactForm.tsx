@@ -2,7 +2,8 @@
 "use client";
 
 import { useState, useTransition } from "react";
-// import { sendContactMessage } from "@/app/actions/contactOps";
+import { sendContactMessage } from "@/app/actions/contactOps";
+import { toastSuccess, toastError } from "@/lib/toast";
 
 interface FormErrors {
   name?: string;
@@ -20,10 +21,6 @@ const ContactForm = () => {
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [serverMessage, setServerMessage] = useState<{
-    status: "success" | "error";
-    message: string;
-  } | null>(null);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -48,28 +45,21 @@ const ContactForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setServerMessage(null);
     if (!validateForm()) return;
 
-    const data = new FormData();
-    Object.entries(formData).forEach(([key, value]) => data.append(key, value));
-
     startTransition(async () => {
-      // const result = await sendContactMessage(data);
-      const result = {
-        status: "success",
-        message: "Your message has been sent successfully!",
-      }; // Mock result
-      setServerMessage(
-        result.message
-          ? {
-              status: result.status as "success" | "error",
-              message: result.message,
-            }
-          : null
+      const result = await sendContactMessage(
+        formData.name,
+        formData.email,
+        formData.subject,
+        formData.message
       );
+
       if (result.status === "success") {
-        setFormData({ name: "", email: "", subject: "", message: "" }); // Clear form on success
+        toastSuccess("Message Sent", result.message);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        toastError("Error", result.message);
       }
     });
   };
@@ -139,17 +129,6 @@ const ContactForm = () => {
         )}
       </div>
       <div>
-        {serverMessage && (
-          <p
-            className={`text-sm mb-4 ${
-              serverMessage.status === "success"
-                ? "text-green-600"
-                : "text-red-500"
-            }`}
-          >
-            {serverMessage.message}
-          </p>
-        )}
         <button
           type="submit"
           disabled={isPending}
@@ -163,3 +142,4 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+
