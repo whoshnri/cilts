@@ -22,7 +22,7 @@ import { logoutUser } from "@/app/actions/authOps";
 import { CompactCollab } from "@/components/collabsdetailpage";
 import { UserCollabs } from "../page";
 import { Tag } from "@prisma/client";
-import { toastError, toastSuccess } from "@/lib/toast";
+import { toast } from "sonner";
 
 export const Tiro_Devanagari_MarathiFont = Tiro_Devanagari_Marathi({
   subsets: ["latin"],
@@ -112,16 +112,16 @@ const AccountClientPage: FC<AccountClientPageProps> = ({
   useEffect(() => {
     setHasChanges(
       username !== (initialUser.username || "") ||
-        image !== (initialUser.image || "")
+      image !== (initialUser.image || "")
     );
   }, [username, image]);
 
   const handleLogout = async () => {
     const res = await logoutUser();
     if (res.status !== "success") {
-      toastError("Logout Failed", "Unable to log out. Please try again.");
+      toast.error("Logout Failed", { description: "Unable to log out. Please try again." });
     } else {
-      toastSuccess("Logged Out", "You have been logged out successfully.");
+      toast.success("Logged Out", { description: "You have been logged out successfully." });
       window.location.href = "/";
     }
   };
@@ -149,21 +149,19 @@ const AccountClientPage: FC<AccountClientPageProps> = ({
             <nav className="flex md:flex-col gap-2 p-2 rounded-xl bg-white">
               <button
                 onClick={() => setActiveTab("profile")}
-                className={`w-full text-left font-semibold p-3 rounded-lg transition-colors ${
-                  activeTab === "profile"
+                className={`w-full text-left font-semibold p-3 rounded-lg transition-colors ${activeTab === "profile"
                     ? "bg-gray-100 shadow-sm text-black"
                     : "text-gray-600 hover:bg-gray-200"
-                }`}
+                  }`}
               >
                 Profile Details
               </button>
               <button
                 onClick={() => setActiveTab("collabs")}
-                className={`w-full text-left font-semibold p-3 rounded-lg transition-colors ${
-                  activeTab === "collabs"
+                className={`w-full text-left font-semibold p-3 rounded-lg transition-colors ${activeTab === "collabs"
                     ? "bg-gray-100 shadow-sm text-black"
                     : "text-gray-600 hover:bg-gray-200"
-                }`}
+                  }`}
               >
                 My Collaborations
               </button>
@@ -222,11 +220,10 @@ const AccountClientPage: FC<AccountClientPageProps> = ({
                   </div>
                   {serverMessage && (
                     <p
-                      className={`${
-                        serverMessage.type === "error"
+                      className={`${serverMessage.type === "error"
                           ? "text-red-500"
                           : "text-green-600"
-                      } text-sm`}
+                        } text-sm`}
                     >
                       {serverMessage.text}
                     </p>
@@ -347,11 +344,11 @@ const EditCollabModal: FC<{
     const res = await updateCollab(collab.id, formData);
     if (res.status === "success") {
       setIsOpen(false);
-      toastSuccess("Collaboration Updated", "Your collaboration has been updated successfully.");
+      toast.success("Collaboration Updated", { description: "Your collaboration has been updated successfully." });
       window.location.reload();
     } else {
       setIsSaving(false);
-      toastError("Update Failed", res.message);
+      toast.error("Update Failed", { description: res.message });
       return;
     }
     setIsSaving(false);
@@ -461,11 +458,10 @@ const EditCollabModal: FC<{
                   <button
                     key={tag}
                     type="button"
-                    className={`m-1 px-3 py-1 rounded-full border ${
-                      formData.tags.includes(tag)
+                    className={`m-1 px-3 py-1 rounded-full border ${formData.tags.includes(tag)
                         ? "bg-blue-500 text-white"
                         : "bg-white text-black"
-                    }`}
+                      }`}
                     onClick={() => {
                       if (formData.tags.includes(tag as Tag)) {
                         setFormData((prev) => ({
@@ -504,20 +500,20 @@ const EditCollabModal: FC<{
         </div>
         <div className="hidden md:w-full md:block border p-2 rounded-lg max-w-sm min-w-sm">
           {formData.imageUrl?.endsWith(".mp4") ? (
-              <video
-                src={formData.imageUrl}
-                autoPlay
-                muted
-                loop
-                className="transition-transform duration-300 ease-in-out h-full aspect-video w-full object-cover mb-10 rounded-2xl"
-              />
-            ) : (
-              <img
-                src={formData.imageUrl || "/images/main.jpg"}
-                alt={formData.title}
-                className="transition-transform  duration-300 ease-in-out h-full w-full object-cover mb-10 rounded-2xl"
-              />
-            )}
+            <video
+              src={formData.imageUrl}
+              autoPlay
+              muted
+              loop
+              className="transition-transform duration-300 ease-in-out h-full aspect-video w-full object-cover mb-10 rounded-2xl"
+            />
+          ) : (
+            <img
+              src={formData.imageUrl || "/images/main.jpg"}
+              alt={formData.title}
+              className="transition-transform  duration-300 ease-in-out h-full w-full object-cover mb-10 rounded-2xl"
+            />
+          )}
         </div>
       </div>
     </div>
@@ -534,10 +530,10 @@ const ConfirmDeleteModal: FC<{
   async function onConfirm() {
     const res = await deleteCollab(name);
     if (res.status === "success") {
-      toastSuccess("Collaboration Deleted", "Your collaboration has been deleted successfully.");
+      toast.success("Collaboration Deleted", { description: "Your collaboration has been deleted successfully." });
       window.location.reload();
     } else {
-      toastError("Delete Failed", res.message);
+      toast.error("Delete Failed", { description: res.message });
     }
   }
   return (

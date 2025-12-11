@@ -3,7 +3,7 @@
 
 import { useState, useTransition } from "react";
 import { sendContactMessage } from "@/app/actions/contactOps";
-import { toastSuccess, toastError } from "@/lib/toast";
+import { toast } from "sonner";
 
 interface FormErrors {
   name?: string;
@@ -56,10 +56,10 @@ const ContactForm = () => {
       );
 
       if (result.status === "success") {
-        toastSuccess("Message Sent", result.message);
+        toast.success("Message Sent", { description: result.message });
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        toastError("Error", result.message);
+        toast.error("Error", { description: result.message });
       }
     });
   };

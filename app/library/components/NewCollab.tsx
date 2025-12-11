@@ -5,7 +5,7 @@ import { FC, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Tag, UserTypes } from "@prisma/client";
 import { createCollab } from "@/app/actions/collabsOps";
-import { toastSuccess, toastError } from "@/lib/toast";
+import { toast } from "sonner";
 import Link from "next/link";
 
 const tagValues = Object.values(Tag);
@@ -67,9 +67,9 @@ const NewCollabForm: FC = () => {
     startTransition(async () => {
       const result = await createCollab(formData);
       if (result.status === "error") {
-        toastError("Submission Failed", result.message);
+        toast.error("Submission Failed", { description: result.message });
       } else {
-        toastSuccess("Success!", "Your collab has been submitted.");
+        toast.success("Success!", { description: "Your collab has been submitted." });
         router.push(`/library/${result.data.slug}`);
       }
     });

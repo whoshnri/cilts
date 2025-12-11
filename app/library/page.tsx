@@ -7,7 +7,7 @@ import PinterestGrid, { GridItem } from "@/components/gridsystem"; // Your mason
 import { Tiro_Devanagari_Marathi } from "next/font/google";
 import CollabCard from "@/app/library/components/CollabCard";
 import { fetchCollabs, CollabForCard } from "../actions/collabsOps";
-import { toastError } from "@/lib/toast";
+import { toast } from "sonner";
 
 export const Tiro_Devanagari_MarathiFont = Tiro_Devanagari_Marathi({
   subsets: ["latin"],
@@ -39,7 +39,7 @@ export default function GridPage() {
       if (result.data) {
         setCollabs(result.data);
       } else {
-        toastError("Failed to Load", result.message || "Could not fetch collaborations.");
+        toast.error("Failed to Load", { description: result.message || "Could not fetch collaborations." });
       }
       setIsLoading(false);
     };

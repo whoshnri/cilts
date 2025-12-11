@@ -5,7 +5,7 @@ import { FC, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Twitter, Github, Linkedin } from "lucide-react";
-import { toastSuccess, toastError } from '@/lib/toast'
+import { toast } from "sonner";
 import { subscribeToNewsletter } from "@/app/actions/newsletterOps";
 import logo from "@/public/logo.svg";
 
@@ -23,13 +23,13 @@ const Footer: FC = () => {
     try {
       const result = await subscribeToNewsletter(email);
       if (result.success) {
-        toastSuccess("Subscribed!", result.message);
+        toast.success("Subscribed!", { description: result.message });
         form.reset();
       } else {
-        toastError("Subscription failed", result.message);
+        toast.error("Subscription failed", { description: result.message });
       }
     } catch (error) {
-      toastError("Error", "Something went wrong. Please try again.");
+      toast.error("Error", { description: "Something went wrong. Please try again." });
     } finally {
       setIsLoading(false);
     }

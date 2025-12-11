@@ -1,7 +1,7 @@
 "use client"
 import { FC, useState } from "react";
 import { subscribeToNewsletter } from "@/app/actions/newsletterOps";
-import { toastSuccess, toastError } from "@/lib/toast";
+import { toast } from "sonner";
 
 const NewsletterSignup: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,13 +17,13 @@ const NewsletterSignup: FC = () => {
     try {
       const result = await subscribeToNewsletter(email);
       if (result.success) {
-        toastSuccess("Subscribed!", result.message);
+        toast.success("Subscribed!", { description: result.message });
         form.reset();
       } else {
-        toastError("Subscription failed", result.message);
+        toast.error("Subscription failed", { description: result.message });
       }
     } catch (error) {
-      toastError("Error", "Something went wrong. Please try again.");
+      toast.error("Error", { description: "Something went wrong. Please try again." });
     } finally {
       setIsLoading(false);
     }

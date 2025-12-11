@@ -1,4 +1,3 @@
-// components/AuthForm.tsx
 "use client";
 
 import { FC, useState, useEffect } from "react";
@@ -6,7 +5,7 @@ import { Eye, EyeOff } from "lucide-react";
 import crown from "@/public/crown.svg"
 import Image from "next/image";
 import { createUser, loginUser } from "../actions/authOps";
-import { toastError, toastSuccess } from "@/lib/toast";
+import { toast } from "sonner";
 
 const AuthForm: FC = () => {
   const [formMode, setFormMode] = useState<"login" | "signup">("login");
@@ -35,19 +34,19 @@ const AuthForm: FC = () => {
       const res = await loginUser(isEmail ? login : undefined, !isEmail ? login : undefined, password);
       // get the session token from res if successful
       if (res.status === "success") {
-        toastSuccess("Login Successful", "You have logged in successfully.");
+        toast.success("Login Successful", { description: "You have logged in successfully." });
         window.location.href = "/profile";
       } else {
-        toastError("Login Failed", res.message);
+        toast.error("Login Failed", { description: res.message });
       }
     } else {
       const res = await createUser(email, userName, password);
       if (res.status === "success") {
-        toastSuccess("Account Created", "Your account has been created successfully. Please log in.");
+        toast.success("Account Created", { description: "Your account has been created successfully. Please log in." });
         setFormMode("login");
         return
       }
-      toastError("Signup Failed", res.message);
+      toast.error("Signup Failed", { description: res.message });
     }
   };
 
@@ -56,10 +55,10 @@ const AuthForm: FC = () => {
   return (
     <section className="flex min-h-screen w-full items-center justify-center p-4 md:mt-20">
       <div className="flex w-full max-w-4xl flex-col items-center gap-12">
-        
+
         {/* Form Card */}
         <div className=" relative w-full max-w-md rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur-xl md:p-10 transition-all duration-200">
-        <Image 
+          <Image
             src={crown}
             alt="CILTS Crown Logo"
             className="w-40 h-40 mb-4 mx-auto absolute -top-20 left-0 transform -translate-x-1/2"
@@ -88,7 +87,7 @@ const AuthForm: FC = () => {
             {/* Email Address */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                { !isLoginMode ? "Email address" : "Username or Email address" }
+                {!isLoginMode ? "Email address" : "Username or Email address"}
               </label>
               <input
                 id={!isLoginMode ? "email" : "usernameOrEmail"}

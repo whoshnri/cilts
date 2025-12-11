@@ -144,13 +144,13 @@ const Navigation: FC = () => {
           )}
           <Link
             href={"/leaderboard"}
-            className="bg-black backdrop-blur-2xl text-white px-5 py-2 rounded-md hover:bg-black/80 cursor-pointer transition"
+            className={` backdrop-blur-2xl  px-5 py-2 rounded-md cursor-pointer transition ${loggedIn ? "hover:bg-white/80 cursor-pointer" : "text-white hover:bg-black/80 bg-black "}`}
           >
             Leaderboard
           </Link>
           {/* user name if logged in */}
           {loggedIn && (
-            <div>
+            <div className="flex items-center gap-2">
             <Link
               href={"/profile"}
               className={`text-gray-700 bg-transparent rounded-xl w-10 h-10 backdrop-blur-2xl ${
@@ -161,10 +161,12 @@ const Navigation: FC = () => {
                 <img
                   src={user.image}
                   alt="User Avatar"
-                  className="w-full h-full rounded-full"
+                  className="w-8 h-8 rounded-full"
                 />
               ) : (
-                <User2Icon className="w-full h-full text-black" />
+                <div className="w-full h-full flex items-center justify-center">
+                  {user?.username[0].toUpperCase()}
+                </div>
               )}
             </Link> 
             <Link
